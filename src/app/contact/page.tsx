@@ -117,7 +117,7 @@ export default function ContactPage() {
                     />
                   </label>
                   <button type="submit" className="pv-btn pv-btn--solid">
-                    Deploy Brief <span aria-hidden>{"//"}</span>
+                    Deploy Brief
                   </button>
                 </form>
               )}

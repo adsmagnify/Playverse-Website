@@ -108,7 +108,7 @@ export default function HomePage() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.65 }}
             >
-              <span className="text-lime">01 // INIT</span>
+              <span className="text-lime">01 · Init</span>
               <span className="scroll-cue text-cyan">Scroll to frag</span>
               <span className="text-magenta">India · Global</span>
             </motion.div>
@@ -125,7 +125,7 @@ export default function HomePage() {
         <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
-              {"// scoreboard"}
+              Scoreboard
             </p>
             <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-7xl">
               We don&apos;t host
@@ -157,7 +157,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl">
           <Reveal className="mb-10 md:mb-14">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-magenta">
-              {"// loadout"}
+              Loadout
             </p>
             <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-7xl">
               Titles we torch
@@ -177,7 +177,7 @@ export default function HomePage() {
           <Reveal className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan">
-                {"// fixture feed"}
+                Fixture feed
               </p>
               <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-7xl">
                 Upcoming mayhem
@@ -212,7 +212,7 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-7xl">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
-              {"// playbook.exe"}
+              Playbook
             </p>
             <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-7xl">
               Rules of engagement
@@ -242,7 +242,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.75fr_1.25fr]">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-magenta">
-              {"// faq"}
+              FAQ
             </p>
             <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-6xl">
               Before you queue
@@ -268,7 +268,7 @@ export default function HomePage() {
         <div className="relative mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
-              {"// final round"}
+              Final round
             </p>
             <h2 className="mt-3 max-w-2xl font-display text-5xl tracking-[0.06em] md:text-7xl">
               Ready to make

@@ -63,7 +63,6 @@ export function MagneticButton({
           }}
         >
           {children}
-          <span aria-hidden>{"//"}</span>
         </Link>
       </motion.div>
     </CursorTarget>

@@ -32,7 +32,7 @@ export default function AboutPage() {
 
         <HeroDrift>
           <div className="relative z-10 flex min-h-[85svh] flex-col justify-end px-5 pb-12 pt-28 md:px-8">
-            <LiveBadge text="ORG FILE // PLAYVERSE" />
+            <LiveBadge text="About PlayVerse" />
             <motion.h1
               className="mt-5 font-display text-[clamp(3.2rem,12vw,8.5rem)] leading-[0.85] tracking-[0.06em]"
               initial={{ opacity: 0, y: 30 }}
@@ -55,7 +55,7 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_1.2fr]">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
-              {"// origin"}
+              Origin
             </p>
             <h2 className="mt-3 font-display text-4xl tracking-[0.06em] md:text-6xl">
               Not another

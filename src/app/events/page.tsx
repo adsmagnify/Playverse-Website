@@ -19,7 +19,7 @@ export default function EventsPage() {
 
       <section className="px-5 pb-8 pt-28 md:px-8 md:pt-36">
         <div className="mx-auto max-w-7xl">
-          <LiveBadge text="EVENT DATABASE // UNLOCKED" />
+          <LiveBadge text="Event database unlocked" />
           <motion.h1
             className="mt-5 font-display text-[clamp(3.2rem,11vw,8rem)] leading-[0.85] tracking-[0.06em]"
             initial={{ opacity: 0, y: 28 }}

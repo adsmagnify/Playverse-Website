@@ -92,7 +92,6 @@ export function SportCursor({ children }: { children: ReactNode }) {
             animate={{
               opacity: visible ? 1 : 0,
               scale: hovering ? 1.7 : 1,
-              rotate: mode === "chaos" ? 45 : 0,
             }}
             transition={{ type: "spring", stiffness: 300, damping: 18 }}
           >

@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { TransitionLink } from "@/components/TransitionLink";
+import { SharedEventImage, SharedEventTitle } from "@/components/SharedEventMedia";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import {
   motion,
@@ -46,10 +47,11 @@ export function MagneticButton({
   return (
     <CursorTarget label="ENTER" chaos>
       <motion.div style={{ x: sx, y: sy }} className={className}>
-        <Link
+        <TransitionLink
           ref={ref}
           href={href}
           className={`pv-btn ${variant === "solid" ? "pv-btn--solid" : ""}`}
+          direction="forward"
           onMouseMove={(e) => {
             const el = ref.current;
             if (!el) return;
@@ -63,7 +65,7 @@ export function MagneticButton({
           }}
         >
           {children}
-        </Link>
+        </TransitionLink>
       </motion.div>
     </CursorTarget>
   );
@@ -203,11 +205,8 @@ export function DisciplineCard({
     <CursorTarget label="QUEUE" chaos>
       <motion.article
         ref={ref}
+        data-scroll-discipline
         className="group relative min-h-[440px] overflow-hidden border border-line bg-void-2"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-10%" }}
-        transition={{ duration: 0.75, delay: index * 0.08 }}
         onMouseMove={(e) => {
           const r = ref.current?.getBoundingClientRect();
           if (!r) return;
@@ -247,6 +246,7 @@ export function DisciplineCard({
 
 export function ExperienceCard({
   href,
+  slug,
   title,
   category,
   location,
@@ -254,16 +254,13 @@ export function ExperienceCard({
   image,
 }: {
   href: string;
+  slug: string;
   title: string;
   category: string;
   location: string;
   summary: string;
   image: string;
 }) {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const rotateX = useSpring(0, { stiffness: 200, damping: 16 });
-  const rotateY = useSpring(0, { stiffness: 200, damping: 16 });
-
   return (
     <CursorTarget label="JOIN" chaos>
       <motion.div
@@ -271,40 +268,22 @@ export function ExperienceCard({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-10%" }}
         transition={{ duration: 0.7 }}
-        style={{ perspective: 1200 }}
       >
-        <Link
-          ref={ref}
-          href={href}
-          className="group block"
-          onMouseMove={(e) => {
-            const el = ref.current;
-            if (!el) return;
-            const r = el.getBoundingClientRect();
-            rotateX.set(((e.clientY - r.top) / r.height - 0.5) * -10);
-            rotateY.set(((e.clientX - r.left) / r.width - 0.5) * 10);
-          }}
-          onMouseLeave={() => {
-            rotateX.set(0);
-            rotateY.set(0);
-          }}
-        >
-          <motion.div
-            className="relative aspect-[16/11] overflow-hidden border border-line"
-            style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-          >
-            <div
-              className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-110 group-hover:brightness-110"
-              style={{ backgroundImage: `url(${image})` }}
+        <TransitionLink href={href} className="group block" direction="forward">
+          <div className="relative aspect-[16/11] overflow-hidden border border-line">
+            <SharedEventImage
+              slug={slug}
+              src={image}
+              overlayClassName="bg-gradient-to-t from-void via-transparent to-transparent"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent" />
-            <div className="absolute inset-0 opacity-0 mix-blend-color-dodge transition group-hover:opacity-40"
+            <div
+              className="absolute inset-0 opacity-0 mix-blend-color-dodge transition group-hover:opacity-40"
               style={{
                 background:
                   "linear-gradient(120deg, #00f0ff 0%, transparent 40%, #ff2bd6 100%)",
               }}
             />
-            <div className="absolute left-4 top-4 flex gap-2 font-mono text-[10px] uppercase tracking-[0.14em]">
+            <div className="absolute left-4 top-4 z-10 flex gap-2 font-mono text-[10px] uppercase tracking-[0.14em]">
               <span className="border border-cyan/50 bg-void/60 px-2 py-1 text-cyan backdrop-blur-sm">
                 {category}
               </span>
@@ -312,14 +291,17 @@ export function ExperienceCard({
                 {location}
               </span>
             </div>
-          </motion.div>
+          </div>
           <div className="mt-4">
-            <h3 className="font-display text-3xl tracking-[0.05em] transition group-hover:text-cyan md:text-4xl">
+            <SharedEventTitle
+              slug={slug}
+              className="font-display text-3xl tracking-[0.05em] transition group-hover:text-cyan md:text-4xl"
+            >
               {title}
-            </h3>
+            </SharedEventTitle>
             <p className="mt-2 max-w-md text-sm text-ghost-dim">{summary}</p>
           </div>
-        </Link>
+        </TransitionLink>
       </motion.div>
     </CursorTarget>
   );
@@ -355,11 +337,28 @@ export function SplitStat({
   value,
   suffix,
   label,
+  animate = true,
 }: {
   value: string;
   suffix: string;
   label: string;
+  animate?: boolean;
 }) {
+  const inner = (
+    <>
+      <p className="font-display text-6xl tracking-wide text-ghost md:text-7xl">
+        <CountUpStat value={value} suffix={suffix} />
+      </p>
+      <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ghost-dim">
+        {label}
+      </p>
+    </>
+  );
+
+  if (!animate) {
+    return <div className="border-t border-line py-8">{inner}</div>;
+  }
+
   return (
     <motion.div
       className="border-t border-line py-8"
@@ -368,12 +367,7 @@ export function SplitStat({
       viewport={{ once: true }}
       transition={{ duration: 0.65 }}
     >
-      <p className="font-display text-6xl tracking-wide text-ghost md:text-7xl">
-        <CountUpStat value={value} suffix={suffix} />
-      </p>
-      <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ghost-dim">
-        {label}
-      </p>
+      {inner}
     </motion.div>
   );
 }

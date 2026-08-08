@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks, siteMeta } from "@/data/content";
 import { CursorTarget } from "@/components/SportCursor";
+import { TransitionLink } from "@/components/TransitionLink";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -27,38 +27,45 @@ export function Header() {
   return (
     <>
       <header
+        style={{ viewTransitionName: "site-header" } as CSSProperties}
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
           scrolled || open ? "bg-void/85 backdrop-blur-md" : "bg-transparent"
         }`}
       >
         <div className="flex items-center justify-between px-5 py-4 md:px-8">
           <CursorTarget label="HOME" chaos>
-            <Link
+            <TransitionLink
               href="/"
               onClick={() => setOpen(false)}
               className="font-display text-2xl tracking-[0.14em] text-ghost md:text-3xl"
+              direction="back"
             >
               {siteMeta.name}
               <span className="text-cyan">.</span>
               <span className="text-magenta">gg</span>
-            </Link>
+            </TransitionLink>
           </CursorTarget>
 
           <nav className="hidden items-center gap-7 lg:flex">
             {navLinks.map((link) => (
               <CursorTarget key={link.href} label="GO">
-                <Link
+                <TransitionLink
                   href={link.href}
                   className="font-mono text-[11px] uppercase tracking-[0.2em] text-ghost-dim transition hover:text-cyan"
+                  direction={link.href === "/" ? "back" : "forward"}
                 >
                   {link.label}
-                </Link>
+                </TransitionLink>
               </CursorTarget>
             ))}
             <CursorTarget label="DROP">
-              <Link href="/contact" className="pv-btn pv-btn--solid !py-2.5 !text-[10px]">
+              <TransitionLink
+                href="/contact"
+                className="pv-btn pv-btn--solid !py-2.5 !text-[10px]"
+                direction="forward"
+              >
                 Book an Event
-              </Link>
+              </TransitionLink>
             </CursorTarget>
           </nav>
 
@@ -100,13 +107,14 @@ export function Header() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.06 * i }}
                   >
-                    <Link
+                    <TransitionLink
                       href={link.href}
                       onClick={() => setOpen(false)}
                       className="font-display text-5xl tracking-[0.08em] text-ghost"
+                      direction={link.href === "/" ? "back" : "forward"}
                     >
                       {link.label}
-                    </Link>
+                    </TransitionLink>
                   </motion.li>
                 ))}
               </ul>

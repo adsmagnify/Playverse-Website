@@ -1,23 +1,24 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FaqList } from "@/components/FaqList";
+import { HomeScrollEffects } from "@/components/HomeScrollEffects";
 import {
   DisciplineCard,
   ExperienceCard,
   FloatingOrbs,
   GlitchTitle,
   HudCorners,
-  LiveBadge,
   MagneticButton,
   Marquee,
   ScoreTicker,
   SplitStat,
   StadiumLights,
 } from "@/components/PlayVerseUI";
-import { CountUp, HeroDrift, Reveal, Stagger, StaggerItem } from "@/components/motion";
+import { CountUp, HeroDrift, Reveal } from "@/components/motion";
 import {
   disciplines,
   experiences,
@@ -31,19 +32,22 @@ import {
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function HomePage() {
+  const mainRef = useRef<HTMLElement>(null);
   const featured = experiences.filter((e) => e.featured);
 
   return (
-    <main className="bg-void text-ghost">
+    <main ref={mainRef} className="bg-void text-ghost">
+      <HomeScrollEffects scope={mainRef} />
       <Header />
 
       {/* HERO */}
-      <section className="relative min-h-svh overflow-hidden">
+      <section data-scroll-hero className="relative min-h-svh overflow-hidden">
         <div
-          className="absolute inset-0 scale-110 bg-cover bg-center"
+          data-scroll-hero-bg
+          className="absolute inset-0 scale-110 bg-cover bg-center will-change-transform"
           style={{ backgroundImage: `url(${heroImage})` }}
         />
-        <div className="hero-wash absolute inset-0" />
+        <div data-scroll-hero-wash className="hero-wash absolute inset-0" />
         <div className="field-grid absolute inset-0" />
         <StadiumLights />
         <FloatingOrbs />
@@ -51,18 +55,6 @@ export default function HomePage() {
 
         <HeroDrift>
           <div className="relative z-10 flex min-h-svh flex-col justify-end px-5 pb-10 pt-28 md:px-8 md:pb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex flex-wrap items-center gap-4"
-            >
-              <LiveBadge text="MATCHDAY PROTOCOLS ONLINE" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-magenta">
-                ping 12ms · servers hot
-              </span>
-            </motion.div>
-
             <motion.p
               className="mt-5 font-display text-[clamp(4.2rem,15vw,12rem)] leading-[0.8] tracking-[0.06em]"
               initial={{ opacity: 0, y: 40 }}
@@ -119,8 +111,17 @@ export default function HomePage() {
       <Marquee items={marqueeItems} fast />
       <Marquee items={[...marqueeItems].reverse()} reverse />
 
+      <div
+        data-scroll-rule
+        className="mx-auto h-px max-w-7xl origin-left bg-gradient-to-r from-cyan via-magenta to-lime opacity-60"
+        aria-hidden
+      />
+
       {/* STATS HUD */}
-      <section className="relative px-5 py-20 md:px-8 md:py-28">
+      <section
+        data-scroll-stats
+        className="relative px-5 py-20 md:px-8 md:py-28"
+      >
         <div className="field-grid absolute inset-0 opacity-50" />
         <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal>
@@ -128,11 +129,19 @@ export default function HomePage() {
               Scoreboard
             </p>
             <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-7xl">
-              We don&apos;t host
-              <br />
-              <span className="text-cyan">events.</span>
-              <br />
-              <span className="text-magenta">We drop raids.</span>
+              <span className="block overflow-hidden">
+                <span data-scroll-line className="block">
+                  We don&apos;t host
+                </span>
+              </span>
+              <span className="block overflow-hidden">
+                <span data-scroll-line className="block text-cyan">events.</span>
+              </span>
+              <span className="block overflow-hidden">
+                <span data-scroll-line className="block text-magenta">
+                  We drop raids.
+                </span>
+              </span>
             </h2>
             <p className="mt-5 max-w-sm text-sm text-ghost-dim">
               Production, ops, talent, and stage design fused into one esports
@@ -141,16 +150,24 @@ export default function HomePage() {
           </Reveal>
           <div className="grid gap-2 sm:grid-cols-2">
             {stats.map((stat) => (
-              <SplitStat
-                key={stat.label}
-                value={stat.value}
-                suffix={stat.suffix}
-                label={stat.label}
-              />
+              <div key={stat.label} data-scroll-stat>
+                <SplitStat
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  label={stat.label}
+                  animate={false}
+                />
+              </div>
             ))}
           </div>
         </div>
       </section>
+
+      <div
+        data-scroll-rule
+        className="mx-auto h-px max-w-7xl origin-left bg-gradient-to-r from-lime via-cyan to-magenta opacity-50"
+        aria-hidden
+      />
 
       {/* TITLES / DISCIPLINES */}
       <section className="px-5 py-12 md:px-8 md:py-16">
@@ -172,7 +189,10 @@ export default function HomePage() {
       </section>
 
       {/* EVENTS */}
-      <section className="border-t border-line px-5 py-20 md:px-8 md:py-28">
+      <section
+        data-scroll-events
+        className="border-t border-line px-5 py-20 md:px-8 md:py-28"
+      >
         <div className="mx-auto max-w-7xl">
           <Reveal className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
@@ -186,7 +206,7 @@ export default function HomePage() {
             <MagneticButton href="/events">All Events</MagneticButton>
           </Reveal>
 
-          <div className="mb-10">
+          <div className="mb-10" data-scroll-ticker>
             <ScoreTicker items={tickerMatches} />
           </div>
 
@@ -194,6 +214,7 @@ export default function HomePage() {
             {featured.map((exp) => (
               <ExperienceCard
                 key={exp.slug}
+                slug={exp.slug}
                 href={`/events/${exp.slug}`}
                 title={exp.title}
                 category={exp.category}
@@ -218,10 +239,13 @@ export default function HomePage() {
               Rules of engagement
             </h2>
           </Reveal>
-          <Stagger className="mt-14 grid gap-4 md:grid-cols-2">
+          <div className="mt-14 grid gap-4 md:grid-cols-2">
             {principles.map((p, i) => (
-              <StaggerItem key={p.title}>
-                <article className="group relative overflow-hidden border border-line bg-void/50 p-6 transition hover:border-cyan md:p-8">
+              <article
+                key={p.title}
+                data-scroll-principle
+                className="group relative overflow-hidden border border-line bg-void/50 p-6 transition hover:border-cyan md:p-8"
+              >
                   <span className="font-mono text-cyan text-sm">
                     0{i + 1}
                   </span>
@@ -231,9 +255,8 @@ export default function HomePage() {
                   <p className="mt-3 text-sm text-ghost-dim md:text-base">{p.copy}</p>
                   <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-cyan/10 blur-2xl transition group-hover:bg-magenta/20" />
                 </article>
-              </StaggerItem>
             ))}
-          </Stagger>
+          </div>
         </div>
       </section>
 
@@ -249,15 +272,21 @@ export default function HomePage() {
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <FaqList />
+            <div data-scroll-faq>
+              <FaqList />
+            </div>
           </Reveal>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="relative overflow-hidden border-t border-line px-5 py-24 md:px-8 md:py-32">
+      <section
+        data-scroll-cta
+        className="relative overflow-hidden border-t border-line px-5 py-24 md:px-8 md:py-32"
+      >
         <div
-          className="absolute inset-0 scale-105 bg-cover bg-center opacity-40"
+          data-scroll-cta-bg
+          className="absolute inset-0 scale-105 bg-cover bg-center opacity-40 will-change-transform"
           style={{
             backgroundImage:
               "url(https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=2000&q=80)",
@@ -266,7 +295,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-void via-void/90 to-void/50" />
         <StadiumLights />
         <div className="relative mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <Reveal>
+          <div data-scroll-cta-copy>
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
               Final round
             </p>
@@ -283,12 +312,12 @@ export default function HomePage() {
               />
               <span>events already in the killfeed</span>
             </p>
-          </Reveal>
-          <Reveal delay={0.12}>
+          </div>
+          <div data-scroll-cta-copy>
             <MagneticButton href="/contact" variant="solid">
               Start a Season
             </MagneticButton>
-          </Reveal>
+          </div>
         </div>
       </section>
 

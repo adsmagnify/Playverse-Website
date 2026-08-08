@@ -354,4 +354,128 @@ button {
   body {
     cursor: auto;
   }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
+/* View Transitions API */
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+
+::view-transition-old(site-header) {
+  display: none;
+}
+
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+/* Shared element morph — let the browser handle position/size; only tune timing */
+::view-transition-group(*) {
+  animation-duration: 0.55s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Root crossfade while shared elements morph */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.32s;
+}
+
+@supports (view-transition-name: none) {
+  ::view-transition-old(root) {
+    animation: pv-vt-out 0.32s ease-in both;
+  }
+
+  ::view-transition-new(root) {
+    animation: pv-vt-in 0.42s ease-out 0.06s both;
+  }
+}
+
+@keyframes pv-vt-out {
+  to {
+    opacity: 0;
+    filter: blur(6px);
+  }
+}
+
+@keyframes pv-vt-in {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+}
+
+.pv-transition-overlay {
+  isolation: isolate;
+  background: var(--void);
+}
+
+.pv-transition-bars {
+  position: absolute;
+  inset-block: 0;
+  left: -14vw;
+  width: 128vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.pv-transition-bar {
+  transform-origin: left center;
+  will-change: transform;
+  border-block-end: 1px solid rgba(244, 244, 248, 0.06);
+}
+
+.pv-transition-bar--cyan {
+  background: linear-gradient(
+    102deg,
+    var(--void-3) 0%,
+    rgba(11, 11, 18, 0.95) 28%,
+    rgba(0, 240, 255, 0.42) 62%,
+    rgba(0, 240, 255, 0.88) 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(0, 240, 255, 0.18);
+}
+
+.pv-transition-bar--magenta {
+  background: linear-gradient(
+    102deg,
+    var(--void-2) 0%,
+    rgba(18, 18, 28, 0.95) 30%,
+    rgba(255, 43, 214, 0.38) 64%,
+    rgba(255, 43, 214, 0.82) 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 43, 214, 0.16);
+}
+
+.pv-transition-bar--lime {
+  background: linear-gradient(
+    102deg,
+    var(--void) 0%,
+    rgba(11, 11, 18, 0.95) 32%,
+    rgba(184, 255, 0, 0.28) 66%,
+    rgba(184, 255, 0, 0.72) 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(184, 255, 0, 0.14);
+}
+
+.pv-transition-label {
+  color: var(--ghost);
+  text-shadow:
+    0 0 40px rgba(0, 240, 255, 0.35),
+    0 0 80px rgba(255, 43, 214, 0.2);
+}
+
+.pv-transition-glitch {
+  color: var(--cyan);
+  text-shadow: 2px 0 var(--magenta), -2px 0 var(--lime);
 }

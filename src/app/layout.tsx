@@ -3,8 +3,10 @@ import { Bebas_Neue, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { siteMeta } from "@/data/content";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { SportCursor } from "@/components/SportCursor";
+import { PageTransition } from "@/components/PageTransition";
 
 const bebas = Bebas_Neue({
   weight: "400",
@@ -43,10 +45,11 @@ export default function RootLayout({
       <body className="min-h-full bg-void font-sans text-ghost">
         <SportCursor>
           <SmoothScroll>
+            <ScrollToTop />
             <ScrollProgress />
             <div className="noise-overlay" aria-hidden />
             <div className="scanlines" aria-hidden />
-            {children}
+            <PageTransition>{children}</PageTransition>
           </SmoothScroll>
         </SportCursor>
       </body>

@@ -42,6 +42,7 @@ export default function EventsPage() {
           {experiences.map((exp) => (
             <ExperienceCard
               key={exp.slug}
+              slug={exp.slug}
               href={`/events/${exp.slug}`}
               title={exp.title}
               category={exp.category}

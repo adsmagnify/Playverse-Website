@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -18,13 +19,15 @@ import {
   SplitStat,
   StadiumLights,
 } from "@/components/PlayVerseUI";
-import { CountUp, HeroDrift, Reveal } from "@/components/motion";
+import { CountUp, Reveal } from "@/components/motion";
 import {
   disciplines,
   experiences,
   heroImage,
+  heroScrollBeat,
   marqueeItems,
   principles,
+  principlesIntro,
   stats,
   tickerMatches,
 } from "@/data/content";
@@ -40,29 +43,97 @@ export default function HomePage() {
       <HomeScrollEffects scope={mainRef} />
       <Header />
 
-      {/* HERO */}
-      <section data-scroll-hero className="relative min-h-svh overflow-hidden">
+      {/* HERO → STATS scroll journey */}
+      <section data-hero-journey className="relative">
         <div
-          data-scroll-hero-bg
-          className="absolute inset-0 scale-110 bg-cover bg-center will-change-transform"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        />
-        <div data-scroll-hero-wash className="hero-wash absolute inset-0" />
-        <div className="field-grid absolute inset-0" />
-        <StadiumLights />
-        <FloatingOrbs />
-        <HudCorners className="z-10 opacity-70" />
+          data-hero-journey-pin
+          data-scroll-hero
+          className="relative h-svh overflow-hidden"
+        >
+          <div data-hero-exit className="absolute inset-0 flex flex-col justify-end">
+          <div
+            data-scroll-hero-bg
+            className="absolute inset-0 z-0 overflow-hidden will-change-transform"
+          >
+            <Image
+              src={heroImage}
+              alt=""
+              fill
+              priority
+              draggable={false}
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </div>
+          <div
+            data-scroll-hero-bg-alt
+            className="absolute inset-0 z-0 overflow-hidden opacity-0 will-change-transform"
+          >
+            <Image
+              src={heroScrollBeat.image}
+              alt=""
+              fill
+              draggable={false}
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </div>
+          <div
+            data-scroll-hero-wash
+            className="pointer-events-none absolute inset-0 z-[1]"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-void/70 via-void/25 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-void/90 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_78%_32%,rgba(0,240,255,0.14),transparent_58%)]" />
+          </div>
+          <div className="field-grid pointer-events-none absolute inset-0 z-[2] opacity-25" />
+          <div className="pointer-events-none absolute inset-0 z-[2] opacity-35">
+            <StadiumLights />
+          </div>
+          <HudCorners className="z-10 opacity-70" />
 
-        <HeroDrift>
-          <div className="relative z-10 flex min-h-svh flex-col justify-end px-5 pb-10 pt-28 md:px-8 md:pb-12">
-            <motion.p
-              className="mt-5 font-display text-[clamp(4.2rem,15vw,12rem)] leading-[0.8] tracking-[0.06em]"
+          <div
+            data-hero-reveal
+            className="pointer-events-none absolute inset-0 z-[11] flex items-center px-5 opacity-0 md:px-8"
+          >
+            <div className="pointer-events-auto max-w-xl">
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
+                {heroScrollBeat.eyebrow}
+              </p>
+              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-cyan">
+                {heroScrollBeat.category}
+              </p>
+              <h2 className="mt-3 font-display text-[clamp(2.4rem,7vw,4.5rem)] leading-[0.92] tracking-[0.06em]">
+                {heroScrollBeat.title}
+              </h2>
+              <p className="mt-4 max-w-md text-sm leading-relaxed text-ghost-dim md:text-base">
+                {heroScrollBeat.copy}
+              </p>
+              <div className="mt-6">
+                <MagneticButton href={heroScrollBeat.href} variant="solid">
+                  View Event
+                </MagneticButton>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative z-10 flex w-full flex-col justify-end">
+            <motion.div
+              data-journey-mark
+              className="origin-bottom px-5 will-change-transform md:px-8"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.95, ease, delay: 0.08 }}
             >
-              <GlitchTitle text="PlayVerse" className="text-ghost" />
-            </motion.p>
+              <p className="font-display text-[clamp(4.2rem,15vw,12rem)] leading-[0.8] tracking-[0.06em]">
+                <GlitchTitle text="PlayVerse" className="text-ghost" />
+              </p>
+            </motion.div>
+
+            <div
+              data-hero-journey-content
+              className="flex flex-col px-5 pb-10 pt-4 md:px-8 md:pb-12 md:pt-6"
+            >
 
             <div className="mt-4 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
               <motion.div
@@ -95,7 +166,7 @@ export default function HomePage() {
             </div>
 
             <motion.div
-              className="mt-10 flex items-center justify-between border-t border-line pt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-ghost-dim"
+              className="mt-10 flex items-center justify-between pt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ghost-dim"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.65 }}
@@ -105,7 +176,9 @@ export default function HomePage() {
               <span className="text-magenta">India · Global</span>
             </motion.div>
           </div>
-        </HeroDrift>
+          </div>
+          </div>
+        </div>
       </section>
 
       <Marquee items={marqueeItems} fast />
@@ -238,6 +311,9 @@ export default function HomePage() {
             <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-7xl">
               Rules of engagement
             </h2>
+            <p className="mt-5 max-w-2xl text-sm text-ghost-dim md:text-base">
+              {principlesIntro}
+            </p>
           </Reveal>
           <div className="mt-14 grid gap-4 md:grid-cols-2">
             {principles.map((p, i) => (

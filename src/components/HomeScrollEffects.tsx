@@ -21,9 +21,16 @@ export function HomeScrollEffects({
     if (reduced) return;
 
     const ctx = gsap.context(() => {
-      const hero = root.querySelector<HTMLElement>("[data-scroll-hero]");
+      const journey = root.querySelector<HTMLElement>("[data-hero-journey]");
+      const heroShell = root.querySelector<HTMLElement>("[data-hero-journey-pin]");
+      const heroContent = root.querySelector<HTMLElement>(
+        "[data-hero-journey-content]"
+      );
+      const heroMark = root.querySelector<HTMLElement>("[data-journey-mark]");
       const heroBg = root.querySelector<HTMLElement>("[data-scroll-hero-bg]");
+      const heroBgAlt = root.querySelector<HTMLElement>("[data-scroll-hero-bg-alt]");
       const heroWash = root.querySelector<HTMLElement>("[data-scroll-hero-wash]");
+      const heroReveal = root.querySelector<HTMLElement>("[data-hero-reveal]");
       const statsSection = root.querySelector<HTMLElement>("[data-scroll-stats]");
       const statsLines = root.querySelectorAll<HTMLElement>("[data-scroll-line]");
       const statItems = root.querySelectorAll<HTMLElement>("[data-scroll-stat]");
@@ -39,31 +46,141 @@ export function HomeScrollEffects({
       const ctaSection = root.querySelector<HTMLElement>("[data-scroll-cta]");
       const ctaBg = root.querySelector<HTMLElement>("[data-scroll-cta-bg]");
 
-      if (hero && heroBg) {
+      /* Hero → stats: pinned broadcast sequence (no clip-path) */
+      if (journey && heroShell && heroBg && statsSection) {
+        const heroGrid = heroShell.querySelector<HTMLElement>(".field-grid");
+
+        if (heroMark) {
+          gsap.set(heroMark, { transformOrigin: "left bottom" });
+        }
+        gsap.set(heroBg, { filter: "brightness(1)", scale: 1, yPercent: 0 });
+        if (heroBgAlt) {
+          gsap.set(heroBgAlt, { opacity: 0, scale: 1.08 });
+        }
+        if (heroReveal) {
+          gsap.set(heroReveal, { opacity: 0, y: 40 });
+        }
+        if (heroContent) {
+          gsap.set(heroContent, { opacity: 1, y: 0, filter: "blur(0px)" });
+        }
+        if (heroMark) {
+          gsap.set(heroMark, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" });
+        }
+
+        const journeyTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: journey,
+            start: "top top",
+            end: "+=95%",
+            pin: heroShell,
+            scrub: 0.9,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        if (heroContent) {
+          journeyTl.fromTo(
+            heroContent,
+            { y: 0, opacity: 1, filter: "blur(0px)" },
+            {
+              y: -80,
+              opacity: 0,
+              filter: "blur(10px)",
+              duration: 0.34,
+              ease: "power2.in",
+            },
+            0
+          );
+        }
+
+        journeyTl.fromTo(
+          heroBg,
+          { scale: 1, yPercent: 0, filter: "brightness(1)" },
+          {
+            scale: 1.22,
+            yPercent: -12,
+            filter: "brightness(0.52)",
+            duration: 0.62,
+            ease: "none",
+          },
+          0
+        );
+
+        if (heroWash) {
+          journeyTl.fromTo(
+            heroWash,
+            { opacity: 1 },
+            { opacity: 0.38, duration: 0.42, ease: "none" },
+            0
+          );
+        }
+
+        if (heroMark) {
+          journeyTl.fromTo(
+            heroMark,
+            { y: 0, scale: 1, opacity: 1, filter: "blur(0px)" },
+            {
+              y: () => -window.innerHeight * 0.16,
+              scale: 1.12,
+              opacity: 0,
+              filter: "blur(8px)",
+              duration: 0.46,
+              ease: "power2.in",
+            },
+            0.06
+          );
+        }
+
+        if (heroBgAlt) {
+          journeyTl.fromTo(
+            heroBg,
+            { opacity: 1 },
+            { opacity: 0, duration: 0.38, ease: "power2.inOut" },
+            0.24
+          );
+          journeyTl.fromTo(
+            heroBgAlt,
+            { opacity: 0, scale: 1.08 },
+            { opacity: 1, scale: 1, duration: 0.42, ease: "power2.out" },
+            0.24
+          );
+        }
+
+        if (heroReveal) {
+          journeyTl.fromTo(
+            heroReveal,
+            { opacity: 0, y: 40 },
+            { opacity: 1, y: 0, duration: 0.36, ease: "power2.out" },
+            0.3
+          );
+          journeyTl.to(
+            heroReveal,
+            { opacity: 0, y: -28, duration: 0.22, ease: "power2.in" },
+            0.78
+          );
+        }
+
+        if (heroGrid) {
+          journeyTl.fromTo(
+            heroGrid,
+            { opacity: 0.25 },
+            { opacity: 0, duration: 0.28 },
+            0.32
+          );
+        }
+      } else if (heroBg) {
         gsap.to(heroBg, {
-          yPercent: 22,
-          scale: 1.12,
+          yPercent: 18,
+          scale: 1.08,
           ease: "none",
           scrollTrigger: {
-            trigger: hero,
+            trigger: heroBg.closest("section") ?? heroBg,
             start: "top top",
             end: "bottom top",
             scrub: 0.6,
           },
         });
-
-        if (heroWash) {
-          gsap.to(heroWash, {
-            opacity: 0.35,
-            ease: "none",
-            scrollTrigger: {
-              trigger: hero,
-              start: "top top",
-              end: "bottom top",
-              scrub: 0.6,
-            },
-          });
-        }
       }
 
       if (statsLines.length) {
@@ -152,20 +269,29 @@ export function HomeScrollEffects({
       }
 
       if (principleCards.length) {
-        gsap.from(principleCards, {
-          y: 40,
-          opacity: 0,
-          rotateX: 8,
-          transformOrigin: "50% 100%",
-          stagger: 0.1,
-          duration: 0.75,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: principleCards[0].parentElement,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
+        gsap.fromTo(
+          principleCards,
+          {
+            y: 40,
+            opacity: 0,
+            rotateX: 8,
+            transformOrigin: "50% 100%",
           },
-        });
+          {
+            y: 0,
+            opacity: 1,
+            rotateX: 0,
+            stagger: 0.1,
+            duration: 0.75,
+            ease: "power3.out",
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: principleCards[0].parentElement,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
       }
 
       if (faqBlock) {
@@ -208,28 +334,18 @@ export function HomeScrollEffects({
           },
         });
       }
-
-      ScrollTrigger.matchMedia({
-        "(min-width: 1024px)": () => {
-          if (!statsSection) return;
-          ScrollTrigger.create({
-            trigger: statsSection,
-            start: "top top",
-            end: "+=55%",
-            pin: true,
-            pinSpacing: true,
-            anticipatePin: 1,
-          });
-        },
-      });
     }, root);
 
     const refresh = () => ScrollTrigger.refresh();
     window.addEventListener("load", refresh);
+    window.addEventListener("resize", refresh);
     refresh();
+    const refreshTimer = window.setTimeout(refresh, 200);
 
     return () => {
+      window.clearTimeout(refreshTimer);
       window.removeEventListener("load", refresh);
+      window.removeEventListener("resize", refresh);
       ctx.revert();
     };
   }, [scope]);

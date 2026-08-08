@@ -3,11 +3,14 @@
 import { TransitionLink } from "@/components/TransitionLink";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { PageRule, PageSection } from "@/components/PageLayout";
 import {
   ExperienceCard,
   GlitchTitle,
+  HudCorners,
   LiveBadge,
   MagneticButton,
+  StadiumLights,
 } from "@/components/PlayVerseUI";
 import { SharedEventImage, SharedEventTitle } from "@/components/SharedEventMedia";
 import { Reveal } from "@/components/motion";
@@ -24,14 +27,22 @@ export function ExperienceDetail({
     <main className="bg-void text-ghost">
       <Header />
 
-      <section className="relative min-h-svh overflow-hidden">
+      <section className="relative h-svh overflow-hidden">
         <SharedEventImage
           slug={experience.slug}
           src={experience.image}
-          overlayClassName="bg-gradient-to-t from-void via-void/70 to-void/15"
+          overlayClassName="bg-gradient-to-r from-void/70 via-void/25 to-transparent"
         />
+        <div className="pointer-events-none absolute inset-0 z-[1]">
+          <div className="absolute inset-0 bg-gradient-to-t from-void/90 via-transparent to-transparent" />
+        </div>
+        <div className="field-grid pointer-events-none absolute inset-0 z-[2] opacity-25" />
+        <div className="pointer-events-none absolute inset-0 z-[2] opacity-35">
+          <StadiumLights />
+        </div>
+        <HudCorners className="z-10 opacity-70" />
 
-        <div className="relative z-10 mx-auto flex min-h-svh max-w-6xl flex-col justify-end px-5 pb-14 pt-28 md:px-8 md:pb-16 md:pt-32">
+        <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-5 pb-12 pt-28 md:px-8 md:pb-14">
           <LiveBadge text={experience.season} />
 
           <SharedEventTitle
@@ -51,74 +62,82 @@ export function ExperienceDetail({
             </span>
           </div>
 
-          <p className="mt-5 max-w-2xl text-base text-ghost-dim md:text-lg">
+          <p className="mt-5 max-w-2xl text-sm text-ghost-dim md:text-base">
             {experience.summary}
           </p>
-
-          <div className="mt-10 grid gap-10 border-t border-white/10 pt-10 lg:grid-cols-[1.2fr_0.8fr]">
-            <Reveal>
-              <p className="text-lg leading-8 text-ghost md:text-xl md:leading-9">
-                {experience.description}
-              </p>
-              <div className="mt-8">
-                <MagneticButton href="/contact" variant="solid">
-                  Host This Format
-                </MagneticButton>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <dl className="space-y-4 border border-line/60 bg-void/50 p-6 backdrop-blur-md">
-                {[
-                  ["Category", experience.category],
-                  ["Location", experience.location],
-                  ["Season", experience.season],
-                ].map(([k, v]) => (
-                  <div
-                    key={k}
-                    className="grid grid-cols-[100px_1fr] gap-3 border-b border-line/40 pb-4 last:border-0"
-                  >
-                    <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-ghost-dim">
-                      {k}
-                    </dt>
-                    <dd>{v}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
-          </div>
         </div>
       </section>
 
-      <section className="relative z-10 border-t border-line bg-void px-5 py-16 md:px-8 md:py-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-10 flex items-end justify-between">
-            <h2 className="font-display text-4xl tracking-[0.06em] md:text-5xl">
+      <PageRule />
+
+      <PageSection containerClassName="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+        <Reveal>
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
+            Briefing
+          </p>
+          <p className="mt-4 text-lg leading-8 text-ghost md:text-xl md:leading-9">
+            {experience.description}
+          </p>
+          <div className="mt-8">
+            <MagneticButton href="/contact" variant="solid">
+              Host This Format
+            </MagneticButton>
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <dl className="space-y-4 border border-line/60 bg-void-2/80 p-6 backdrop-blur-md">
+            {[
+              ["Category", experience.category],
+              ["Location", experience.location],
+              ["Season", experience.season],
+            ].map(([k, v]) => (
+              <div
+                key={k}
+                className="grid grid-cols-[100px_1fr] gap-3 border-b border-line/40 pb-4 last:border-0"
+              >
+                <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-ghost-dim">
+                  {k}
+                </dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
+      </PageSection>
+
+      <PageSection variant="alt">
+        <div className="mb-10 flex items-end justify-between gap-6">
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
+              Fixture feed
+            </p>
+            <h2 className="mt-3 font-display text-4xl tracking-[0.06em] md:text-5xl">
               More lobbies
             </h2>
-            <TransitionLink
-              href="/events"
-              className="font-mono text-[11px] uppercase tracking-[0.16em] text-cyan hover:text-magenta"
-              direction="back"
-            >
-              All events →
-            </TransitionLink>
           </div>
-          <div className="grid gap-8 md:grid-cols-2">
-            {others.map((item) => (
-              <ExperienceCard
-                key={item.slug}
-                slug={item.slug}
-                href={`/events/${item.slug}`}
-                title={item.title}
-                category={item.category}
-                location={item.location}
-                summary={item.summary}
-                image={item.image}
-              />
-            ))}
-          </div>
+          <TransitionLink
+            href="/events"
+            className="font-mono text-[11px] uppercase tracking-[0.16em] text-cyan hover:text-magenta"
+            direction="back"
+          >
+            All events →
+          </TransitionLink>
         </div>
-      </section>
+        <div className="grid gap-8 md:grid-cols-2">
+          {others.map((item) => (
+            <ExperienceCard
+              key={item.slug}
+              slug={item.slug}
+              href={`/events/${item.slug}`}
+              title={item.title}
+              category={item.category}
+              location={item.location}
+              summary={item.summary}
+              image={item.image}
+            />
+          ))}
+        </div>
+      </PageSection>
 
       <Footer />
     </main>

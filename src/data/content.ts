@@ -169,6 +169,9 @@ export const experiences: Experience[] = [
   },
 ];
 
+export const principlesIntro =
+  "Every PlayVerse event runs on the same playbook — loud on purpose, tight on ops, and built so players, crowds, and cameras all catch the same moment.";
+
 export const principles = [
   {
     title: "Chaos, directed",
@@ -213,6 +216,24 @@ export const faqs = [
 
 export const heroImage =
   "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2400&q=80";
+
+export const aboutHeroImage =
+  "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=2400&q=80";
+
+export const eventsHeroImage =
+  "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=2400&q=80";
+
+export const contactHeroImage =
+  "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=2400&q=80";
+
+export const heroScrollBeat = {
+  image: "/BGMI_image.png",
+  eyebrow: "Next drop",
+  title: "Zone Wars India",
+  category: "BGMI · Delhi NCR",
+  copy: "Mobile royale on a stadium screen — drops, zones, and deafening casters.",
+  href: "/events/zone-wars-india",
+};
 
 export const tickerMatches = [
   { label: "LIVE", value: "NRI · Map 3" },

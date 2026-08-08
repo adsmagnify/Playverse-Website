@@ -53,7 +53,7 @@ export default function HomePage() {
           <div data-hero-exit className="absolute inset-0 flex flex-col justify-end">
           <div
             data-scroll-hero-bg
-            className="absolute inset-0 z-0 overflow-hidden will-change-transform"
+            className="absolute inset-0 z-0 overflow-hidden md:will-change-transform"
           >
             <Image
               src={heroImage}
@@ -67,7 +67,7 @@ export default function HomePage() {
           </div>
           <div
             data-scroll-hero-bg-alt
-            className="absolute inset-0 z-0 overflow-hidden opacity-0 will-change-transform"
+            className="absolute inset-0 z-0 overflow-hidden opacity-0 md:will-change-transform"
           >
             <Image
               src={heroScrollBeat.image}
@@ -87,7 +87,7 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_78%_32%,rgba(0,240,255,0.14),transparent_58%)]" />
           </div>
           <div className="field-grid pointer-events-none absolute inset-0 z-[2] opacity-25" />
-          <div className="pointer-events-none absolute inset-0 z-[2] opacity-35">
+          <div className="pointer-events-none absolute inset-0 z-[2] hidden opacity-35 md:block">
             <StadiumLights />
           </div>
           <HudCorners className="z-10 opacity-70" />
@@ -96,7 +96,12 @@ export default function HomePage() {
             data-hero-reveal
             className="pointer-events-none absolute inset-0 z-[11] flex items-center px-5 opacity-0 md:px-8"
           >
-            <div className="pointer-events-auto max-w-xl">
+            <div
+              data-hero-reveal-scrim
+              className="pointer-events-none absolute inset-0 bg-gradient-to-r from-void/95 via-void/75 to-void/35"
+              aria-hidden
+            />
+            <div className="pointer-events-auto relative max-w-xl">
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
                 {heroScrollBeat.eyebrow}
               </p>
@@ -120,7 +125,7 @@ export default function HomePage() {
           <div className="relative z-10 flex w-full flex-col justify-end">
             <motion.div
               data-journey-mark
-              className="origin-bottom px-5 will-change-transform md:px-8"
+              className="relative z-10 origin-bottom px-5 md:px-8 md:will-change-transform"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.95, ease, delay: 0.08 }}
@@ -182,7 +187,9 @@ export default function HomePage() {
       </section>
 
       <Marquee items={marqueeItems} fast />
-      <Marquee items={[...marqueeItems].reverse()} reverse />
+      <div className="hidden md:block">
+        <Marquee items={[...marqueeItems].reverse()} reverse />
+      </div>
 
       <div
         data-scroll-rule
@@ -302,7 +309,9 @@ export default function HomePage() {
 
       {/* PRINCIPLES */}
       <section className="relative overflow-hidden border-t border-line bg-void-2 px-5 py-20 md:px-8 md:py-28">
-        <FloatingOrbs />
+        <div className="hidden md:block">
+          <FloatingOrbs />
+        </div>
         <div className="relative mx-auto max-w-7xl">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
@@ -362,7 +371,7 @@ export default function HomePage() {
       >
         <div
           data-scroll-cta-bg
-          className="absolute inset-0 scale-105 bg-cover bg-center opacity-40 will-change-transform"
+          className="absolute inset-0 scale-105 bg-cover bg-center opacity-40 md:will-change-transform"
           style={{
             backgroundImage:
               "url(https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=2000&q=80)",

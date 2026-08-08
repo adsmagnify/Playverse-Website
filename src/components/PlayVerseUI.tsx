@@ -12,6 +12,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { CursorTarget } from "@/components/SportCursor";
+import { isCoarsePointer } from "@/lib/perf";
 
 export function GlitchTitle({
   text,
@@ -39,34 +40,55 @@ export function MagneticButton({
   className?: string;
 }) {
   const ref = useRef<HTMLAnchorElement>(null);
+  const [magnetic, setMagnetic] = useState(false);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const sx = useSpring(x, { stiffness: 260, damping: 16 });
   const sy = useSpring(y, { stiffness: 260, damping: 16 });
 
+  useEffect(() => {
+    setMagnetic(!isCoarsePointer());
+  }, []);
+
+  const link = (
+    <TransitionLink
+      ref={ref}
+      href={href}
+      className={`pv-btn ${variant === "solid" ? "pv-btn--solid" : ""}`}
+      direction="forward"
+      onMouseMove={
+        magnetic
+          ? (e) => {
+              const el = ref.current;
+              if (!el) return;
+              const r = el.getBoundingClientRect();
+              x.set((e.clientX - r.left - r.width / 2) * 0.4);
+              y.set((e.clientY - r.top - r.height / 2) * 0.4);
+            }
+          : undefined
+      }
+      onMouseLeave={
+        magnetic
+          ? () => {
+              x.set(0);
+              y.set(0);
+            }
+          : undefined
+      }
+    >
+      {children}
+    </TransitionLink>
+  );
+
   return (
     <CursorTarget label="ENTER" chaos>
-      <motion.div style={{ x: sx, y: sy }} className={className}>
-        <TransitionLink
-          ref={ref}
-          href={href}
-          className={`pv-btn ${variant === "solid" ? "pv-btn--solid" : ""}`}
-          direction="forward"
-          onMouseMove={(e) => {
-            const el = ref.current;
-            if (!el) return;
-            const r = el.getBoundingClientRect();
-            x.set((e.clientX - r.left - r.width / 2) * 0.4);
-            y.set((e.clientY - r.top - r.height / 2) * 0.4);
-          }}
-          onMouseLeave={() => {
-            x.set(0);
-            y.set(0);
-          }}
-        >
-          {children}
-        </TransitionLink>
-      </motion.div>
+      {magnetic ? (
+        <motion.div style={{ x: sx, y: sy }} className={className}>
+          {link}
+        </motion.div>
+      ) : (
+        <div className={className}>{link}</div>
+      )}
     </CursorTarget>
   );
 }

@@ -39,7 +39,7 @@ export function PageHero({
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_78%_32%,rgba(0,240,255,0.14),transparent_58%)]" />
       </div>
       <div className="field-grid pointer-events-none absolute inset-0 z-[2] opacity-25" />
-      <div className="pointer-events-none absolute inset-0 z-[2] opacity-35">
+      <div className="pointer-events-none absolute inset-0 z-[2] hidden opacity-35 md:block">
         <StadiumLights />
       </div>
       <HudCorners className="z-10 opacity-70" />

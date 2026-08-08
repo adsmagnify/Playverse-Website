@@ -71,6 +71,22 @@ export function StaggerItem({
 }
 
 export function HeroDrift({ children }: { children: ReactNode }) {
+  const [mobile, setMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    setMobile(
+      window.matchMedia("(max-width: 767px), (pointer: coarse)").matches
+    );
+  }, []);
+
+  if (mobile === null || mobile) {
+    return <div>{children}</div>;
+  }
+
+  return <HeroDriftMotion>{children}</HeroDriftMotion>;
+}
+
+function HeroDriftMotion({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,

@@ -361,6 +361,36 @@ button {
   }
 }
 
+/* Mobile / touch — lighter compositing and fewer animated layers */
+@media (max-width: 767px), (pointer: coarse) {
+  .noise-overlay,
+  .scanlines {
+    display: none;
+  }
+
+  .field-grid {
+    opacity: 0.12 !important;
+  }
+
+  .marquee-track {
+    animation-duration: 32s;
+  }
+
+  .marquee-track--fast {
+    animation-duration: 24s;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    animation: none;
+  }
+
+  .backdrop-blur-sm {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 /* View Transitions API */
 ::view-transition {
   pointer-events: none;

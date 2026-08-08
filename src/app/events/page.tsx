@@ -19,7 +19,9 @@ export default function EventsPage() {
       />
 
       <Marquee items={marqueeItems} fast />
-      <Marquee items={[...marqueeItems].reverse()} reverse />
+      <div className="hidden md:block">
+        <Marquee items={[...marqueeItems].reverse()} reverse />
+      </div>
       <PageRule />
 
       <PageSection>

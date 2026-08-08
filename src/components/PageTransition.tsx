@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { useScrollControl } from "@/components/SmoothScroll";
 import { usesSharedElementTransition } from "@/lib/sharedTransition";
+import { isMobilePerf } from "@/lib/perf";
 
 const ease = "power3.inOut";
 
@@ -56,18 +57,11 @@ export function PageTransition({ children }: { children: ReactNode }) {
       return;
     }
 
+    const mobile = isMobilePerf();
+
     timelineRef.current?.kill();
 
     label.textContent = routeLabel(pathname);
-    gsap.set(overlay, { opacity: 1, pointerEvents: "auto" });
-    gsap.set(bars, {
-      scaleX: 0,
-      transformOrigin: "left center",
-      skewX: -4,
-    });
-    gsap.set(label, { opacity: 0, y: 24, skewX: -8 });
-    if (glitch) gsap.set(glitch, { opacity: 0 });
-
     setTransitioning(true);
     scroll?.scrollToTop(true);
 
@@ -79,6 +73,23 @@ export function PageTransition({ children }: { children: ReactNode }) {
     });
 
     timelineRef.current = tl;
+
+    if (mobile) {
+      tl.to(content, { opacity: 0, duration: 0.12, ease: "power2.out" }, 0)
+        .to(content, { opacity: 1, duration: 0.18, ease: "power2.out" }, 0.14);
+      return () => {
+        tl.kill();
+      };
+    }
+
+    gsap.set(overlay, { opacity: 1, pointerEvents: "auto" });
+    gsap.set(bars, {
+      scaleX: 0,
+      transformOrigin: "left center",
+      skewX: -4,
+    });
+    gsap.set(label, { opacity: 0, y: 24, skewX: -8 });
+    if (glitch) gsap.set(glitch, { opacity: 0 });
 
     tl.to(content, { opacity: 0.35, duration: 0.25, ease }, 0)
       .to(
@@ -176,7 +187,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
         </div>
       </div>
 
-      <div ref={contentRef} className="min-h-full will-change-[opacity]">
+      <div ref={contentRef} className="min-h-full md:will-change-[opacity]">
         {children}
       </div>
     </>

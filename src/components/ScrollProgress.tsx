@@ -1,14 +1,23 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
+import { isMobilePerf } from "@/lib/perf";
 
 export function ScrollProgress() {
+  const [enabled, setEnabled] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 160,
     damping: 28,
     restDelta: 0.001,
   });
+
+  useEffect(() => {
+    setEnabled(!isMobilePerf());
+  }, []);
+
+  if (!enabled) return null;
 
   return (
     <motion.div

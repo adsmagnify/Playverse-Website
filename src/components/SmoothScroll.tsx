@@ -11,6 +11,7 @@ import {
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { shouldUseSmoothScroll } from "@/lib/perf";
 import "lenis/dist/lenis.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -36,10 +37,12 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (reduced) return;
+    if (!shouldUseSmoothScroll()) {
+      ScrollTrigger.normalizeScroll(true);
+      ScrollTrigger.config({ limitCallbacks: true });
+      ScrollTrigger.refresh();
+      return;
+    }
 
     const lenis = new Lenis({
       duration: 1.2,
@@ -84,7 +87,6 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       lenis.destroy();
       lenisRef.current = null;
       ScrollTrigger.scrollerProxy(document.documentElement, {});
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 

@@ -44,11 +44,11 @@ export default function HomePage() {
       <Header />
 
       {/* HERO → STATS scroll journey */}
-      <section data-hero-journey className="relative">
+      <section data-hero-journey className="relative max-md:min-h-[170vh]">
         <div
           data-hero-journey-pin
           data-scroll-hero
-          className="relative h-svh overflow-hidden"
+          className="relative h-svh overflow-hidden max-md:sticky max-md:top-0"
         >
           <div data-hero-exit className="absolute inset-0 flex flex-col justify-end">
           <div
@@ -124,15 +124,16 @@ export default function HomePage() {
 
           <div className="relative z-10 flex w-full flex-col justify-end">
             <motion.div
-              data-journey-mark
               className="relative z-10 origin-bottom px-5 md:px-8 md:will-change-transform"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.95, ease, delay: 0.08 }}
             >
-              <p className="font-display text-[clamp(4.2rem,15vw,12rem)] leading-[0.8] tracking-[0.06em]">
-                <GlitchTitle text="PlayVerse" className="text-ghost" />
-              </p>
+              <div data-journey-mark>
+                <p className="font-display text-[clamp(4.2rem,15vw,12rem)] leading-[0.8] tracking-[0.06em]">
+                  <GlitchTitle text="PlayVerse" className="text-ghost" />
+                </p>
+              </div>
             </motion.div>
 
             <div

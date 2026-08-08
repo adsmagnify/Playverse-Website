@@ -38,9 +38,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!shouldUseSmoothScroll()) {
-      ScrollTrigger.normalizeScroll(true);
       ScrollTrigger.config({ limitCallbacks: true });
-      ScrollTrigger.refresh();
       return;
     }
 

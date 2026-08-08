@@ -87,56 +87,69 @@ export function HomeScrollEffects({
         }
 
         if (mobile) {
-          gsap.set(journey, { minHeight: "155vh" });
-
           const journeyTl = gsap.timeline({
             scrollTrigger: {
               trigger: journey,
               start: "top top",
               end: "bottom top",
-              scrub: 0.25,
+              scrub: 0.35,
               invalidateOnRefresh: true,
             },
           });
 
           if (heroContent) {
-            journeyTl.to(
+            journeyTl.fromTo(
               heroContent,
+              { y: 0, opacity: 1 },
               { y: -48, opacity: 0, duration: 0.34, ease: "power2.in" },
               0
             );
           }
 
-          journeyTl.to(
+          journeyTl.fromTo(
             heroBg,
+            { yPercent: 0, opacity: 1 },
             { yPercent: -6, duration: 0.5, ease: "none" },
             0
           );
 
           if (heroMark) {
-            journeyTl.to(
+            journeyTl.fromTo(
               heroMark,
+              { y: 0, opacity: 1 },
               { y: -40, opacity: 0, duration: 0.24, ease: "power2.in" },
               0.06
             );
           }
 
           if (heroBgAlt) {
-            journeyTl.to(heroBg, { opacity: 0, duration: 0.32, ease: "power2.inOut" }, 0.22);
-            journeyTl.to(heroBgAlt, { opacity: 1, duration: 0.34, ease: "power2.out" }, 0.22);
+            journeyTl.fromTo(
+              heroBg,
+              { opacity: 1 },
+              { opacity: 0, duration: 0.32, ease: "power2.inOut" },
+              0.22
+            );
+            journeyTl.fromTo(
+              heroBgAlt,
+              { opacity: 0 },
+              { opacity: 1, duration: 0.34, ease: "power2.out" },
+              0.22
+            );
           }
 
           if (heroRevealScrim) {
-            journeyTl.to(
+            journeyTl.fromTo(
               heroRevealScrim,
+              { opacity: 0 },
               { opacity: 1, duration: 0.24, ease: "power2.out" },
               0.28
             );
           }
 
           if (heroReveal) {
-            journeyTl.to(
+            journeyTl.fromTo(
               heroReveal,
+              { opacity: 0, y: 20 },
               { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" },
               0.32
             );
@@ -156,7 +169,12 @@ export function HomeScrollEffects({
           }
 
           if (heroGrid) {
-            journeyTl.to(heroGrid, { opacity: 0, duration: 0.2 }, 0.26);
+            journeyTl.fromTo(
+              heroGrid,
+              { opacity: 0.25 },
+              { opacity: 0, duration: 0.2 },
+              0.26
+            );
           }
         } else {
           const journeyTl = gsap.timeline({
@@ -470,13 +488,33 @@ export function HomeScrollEffects({
     const refresh = () => ScrollTrigger.refresh();
     window.addEventListener("load", refresh);
     window.addEventListener("resize", refresh);
+
+    const images = root.querySelectorAll("img");
+    let pendingImages = 0;
+    const onImageDone = () => {
+      pendingImages -= 1;
+      if (pendingImages <= 0) refresh();
+    };
+    images.forEach((img) => {
+      if (img.complete) return;
+      pendingImages += 1;
+      img.addEventListener("load", onImageDone);
+      img.addEventListener("error", onImageDone);
+    });
+
     refresh();
     const refreshTimer = window.setTimeout(refresh, 200);
+    const refreshTimerLate = window.setTimeout(refresh, 800);
 
     return () => {
       window.clearTimeout(refreshTimer);
+      window.clearTimeout(refreshTimerLate);
       window.removeEventListener("load", refresh);
       window.removeEventListener("resize", refresh);
+      images.forEach((img) => {
+        img.removeEventListener("load", onImageDone);
+        img.removeEventListener("error", onImageDone);
+      });
       ctx.revert();
     };
   }, [scope]);

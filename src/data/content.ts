@@ -3,7 +3,7 @@ export const siteMeta = {
   title: "PlayVerse | Esports Events That Hit Different",
   description:
     "PlayVerse is an esports events company — LAN nights, tournament seasons, creator stages, and arena takeovers built for chaos and competition.",
-  email: "hello@playverse.gg",
+  email: "hello@playverse.com",
   phone: "+91 98765 43210",
   phoneHref: "+919876543210",
   socials: {

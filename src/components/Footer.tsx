@@ -6,8 +6,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-10 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="font-display text-4xl tracking-[0.12em] md:text-5xl">
-            PlayVerse<span className="text-cyan">.</span>
-            <span className="text-magenta">gg</span>
+            PlayVerse
           </p>
           <p className="mt-3 max-w-sm text-sm text-ghost-dim">
             Esports events company — LANs, arena majors, creator stages, and

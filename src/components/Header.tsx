@@ -41,8 +41,6 @@ export function Header() {
               direction="back"
             >
               {siteMeta.name}
-              <span className="text-cyan">.</span>
-              <span className="text-magenta">gg</span>
             </TransitionLink>
           </CursorTarget>
 

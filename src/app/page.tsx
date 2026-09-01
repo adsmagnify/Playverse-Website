@@ -131,7 +131,7 @@ export default function HomePage() {
             >
               <div data-journey-mark>
                 <p className="font-display text-[clamp(4.2rem,15vw,12rem)] leading-[0.8] tracking-[0.06em]">
-                  <GlitchTitle text="PlayVerse" className="text-ghost" />
+                  <GlitchTitle text="Asaiverse" className="text-ghost" />
                 </p>
               </div>
             </motion.div>

@@ -23,9 +23,9 @@ export default function AboutPage() {
       <Header />
 
       <PageHero
-        badge="About PlayVerse"
+        badge="About Asaiverse"
         image={aboutHeroImage}
-        description="PlayVerse is an esports events company. We build the nights where brackets matter, casters lose their minds, and the crowd becomes the fifth player."
+        description="Asaiverse is an esports events company. We build the nights where brackets matter, casters lose their minds, and the crowd becomes the fifth player."
         heading={
           <>
             <GlitchTitle text="Born in" />
@@ -52,7 +52,7 @@ export default function AboutPage() {
         <Reveal delay={0.1} className="space-y-6 text-base leading-8 text-ghost-dim md:text-lg">
           <p>
             We came from scrims, campus cups, and Discord raids that deserved
-            better stages. PlayVerse exists to turn competitive gaming into
+            better stages. Asaiverse exists to turn competitive gaming into
             full-body experiences — lights, audio, walkouts, and formats that
             feel illegal in the best way.
           </p>

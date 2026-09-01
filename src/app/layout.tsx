@@ -30,6 +30,10 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: siteMeta.title,
   description: siteMeta.description,
+  icons: {
+    icon: [{ url: siteMeta.favicon, type: "image/svg+xml" }],
+    apple: siteMeta.favicon,
+  },
 };
 
 export default function RootLayout({

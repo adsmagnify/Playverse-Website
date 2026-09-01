@@ -1,9 +1,12 @@
 export const siteMeta = {
-  name: "PlayVerse",
-  title: "PlayVerse | Esports Events That Hit Different",
+  name: "Asaiverse",
+  title: "Asaiverse | Esports Events That Hit Different",
   description:
-    "PlayVerse is an esports events company — LAN nights, tournament seasons, creator stages, and arena takeovers built for chaos and competition.",
-  email: "hello@playverse.com",
+    "Asaiverse is an esports events company — esports, creators, and cosplay. LAN nights, tournament seasons, creator stages, and arena takeovers built for chaos and competition.",
+  email: "hello@asaiverse.com",
+  logo: "/asaiverse-logo.svg",
+  favicon: "/asaiverse-favicon.svg",
+  tagline: "esports | creators | cosplay",
   phone: "+91 98765 43210",
   phoneHref: "+919876543210",
   socials: {
@@ -170,7 +173,7 @@ export const experiences: Experience[] = [
 ];
 
 export const principlesIntro =
-  "Every PlayVerse event runs on the same playbook — loud on purpose, tight on ops, and built so players, crowds, and cameras all catch the same moment.";
+  "Every Asaiverse event runs on the same playbook — loud on purpose, tight on ops, and built so players, crowds, and cameras all catch the same moment.";
 
 export const principles = [
   {
@@ -193,7 +196,7 @@ export const principles = [
 
 export const faqs = [
   {
-    q: "What kind of events does PlayVerse run?",
+    q: "What kind of events does Asaiverse run?",
     a: "LAN tournaments, arena majors, campus circuits, creator showmatches, bootcamps, and brand-powered esports seasons across PC and mobile titles.",
   },
   {

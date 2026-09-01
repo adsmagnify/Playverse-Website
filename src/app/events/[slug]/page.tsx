@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const exp = experiences.find((e) => e.slug === slug);
   if (!exp) return {};
-  return { title: `${exp.title} | PlayVerse`, description: exp.summary };
+  return { title: `${exp.title} | Asaiverse`, description: exp.summary };
 }
 
 export default async function EventPage({ params }: Props) {

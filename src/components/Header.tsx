@@ -28,23 +28,29 @@ export function Header() {
     <>
       <header
         style={{ viewTransitionName: "site-header" } as CSSProperties}
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        className={`fixed inset-x-0 top-0 z-50 overflow-visible transition-colors duration-300 ${
           scrolled || open ? "bg-void/85 backdrop-blur-md" : "bg-transparent"
         }`}
       >
-        <div className="flex items-center justify-between px-5 py-4 md:px-8">
+        <div className="flex h-12 items-center justify-between px-5 md:h-14 md:px-8">
           <CursorTarget label="HOME" chaos>
             <TransitionLink
               href="/"
               onClick={() => setOpen(false)}
-              className="font-display text-2xl tracking-[0.14em] text-ghost md:text-3xl"
+              className="inline-flex shrink-0 translate-y-1 items-center md:translate-y-1.5"
               direction="back"
             >
-              {siteMeta.name}
+              <img
+                src={siteMeta.logo}
+                alt={siteMeta.name}
+                width={280}
+                height={84}
+                className="h-16 w-auto md:h-[4.5rem]"
+              />
             </TransitionLink>
           </CursorTarget>
 
-          <nav className="hidden items-center gap-7 lg:flex">
+          <nav className="hidden items-center gap-5 lg:flex">
             {navLinks.map((link) => (
               <CursorTarget key={link.href} label="GO">
                 <TransitionLink
@@ -59,7 +65,7 @@ export function Header() {
             <CursorTarget label="DROP">
               <TransitionLink
                 href="/contact"
-                className="pv-btn pv-btn--solid !py-2.5 !text-[10px]"
+                className="pv-btn pv-btn--solid !py-2 !px-4 !text-[9px]"
                 direction="forward"
               >
                 Book an Event
@@ -71,7 +77,7 @@ export function Header() {
             <button
               aria-label="Menu"
               onClick={() => setOpen((v) => !v)}
-              className="flex h-10 w-10 flex-col items-center justify-center gap-1.5"
+              className="flex h-9 w-9 flex-col items-center justify-center gap-1.5"
             >
               <span
                 className={`block h-0.5 w-7 bg-cyan transition ${

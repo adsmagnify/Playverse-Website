@@ -1,18 +1,15 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FaqList } from "@/components/FaqList";
+import { DiagonalPanels } from "@/components/DiagonalPanels";
 import { HomeScrollEffects } from "@/components/HomeScrollEffects";
 import {
   DisciplineCard,
   ExperienceCard,
   FloatingOrbs,
-  GlitchTitle,
-  HudCorners,
   MagneticButton,
   Marquee,
   ScoreTicker,
@@ -23,16 +20,13 @@ import { CountUp, Reveal } from "@/components/motion";
 import {
   disciplines,
   experiences,
-  heroImage,
-  heroScrollBeat,
+  marqueeHighlights,
   marqueeItems,
   principles,
   principlesIntro,
   stats,
   tickerMatches,
 } from "@/data/content";
-
-const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function HomePage() {
   const mainRef = useRef<HTMLElement>(null);
@@ -43,154 +37,11 @@ export default function HomePage() {
       <HomeScrollEffects scope={mainRef} />
       <Header />
 
-      {/* HERO → STATS scroll journey */}
-      <section data-hero-journey className="relative max-md:min-h-[170vh]">
-        <div
-          data-hero-journey-pin
-          data-scroll-hero
-          className="relative h-svh overflow-hidden max-md:sticky max-md:top-0"
-        >
-          <div data-hero-exit className="absolute inset-0 flex flex-col justify-end">
-          <div
-            data-scroll-hero-bg
-            className="absolute inset-0 z-0 overflow-hidden md:will-change-transform"
-          >
-            <Image
-              src={heroImage}
-              alt=""
-              fill
-              priority
-              draggable={false}
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-          </div>
-          <div
-            data-scroll-hero-bg-alt
-            className="absolute inset-0 z-0 overflow-hidden opacity-0 md:will-change-transform"
-          >
-            <Image
-              src={heroScrollBeat.image}
-              alt=""
-              fill
-              draggable={false}
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-          </div>
-          <div
-            data-scroll-hero-wash
-            className="pointer-events-none absolute inset-0 z-[1]"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-void/70 via-void/25 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-void/90 via-transparent to-transparent" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_78%_32%,rgba(0,240,255,0.14),transparent_58%)]" />
-          </div>
-          <div className="field-grid pointer-events-none absolute inset-0 z-[2] opacity-25" />
-          <div className="pointer-events-none absolute inset-0 z-[2] hidden opacity-35 md:block">
-            <StadiumLights />
-          </div>
-          <HudCorners className="z-10 opacity-70" />
+      {/* HERO — four diagonal category panels */}
+      <DiagonalPanels />
 
-          <div
-            data-hero-reveal
-            className="pointer-events-none absolute inset-0 z-[11] flex items-center px-5 opacity-0 md:px-8"
-          >
-            <div
-              data-hero-reveal-scrim
-              className="pointer-events-none absolute inset-0 bg-gradient-to-r from-void/95 via-void/75 to-void/35"
-              aria-hidden
-            />
-            <div className="pointer-events-auto relative max-w-xl">
-              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
-                {heroScrollBeat.eyebrow}
-              </p>
-              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-cyan">
-                {heroScrollBeat.category}
-              </p>
-              <h2 className="mt-3 font-display text-[clamp(2.4rem,7vw,4.5rem)] leading-[0.92] tracking-[0.06em]">
-                {heroScrollBeat.title}
-              </h2>
-              <p className="mt-4 max-w-md text-sm leading-relaxed text-ghost-dim md:text-base">
-                {heroScrollBeat.copy}
-              </p>
-              <div className="mt-6">
-                <MagneticButton href={heroScrollBeat.href} variant="solid">
-                  View Event
-                </MagneticButton>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative z-10 flex w-full flex-col justify-end">
-            <motion.div
-              className="relative z-10 origin-bottom px-5 md:px-8 md:will-change-transform"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.95, ease, delay: 0.08 }}
-            >
-              <div data-journey-mark>
-                <p className="font-display text-[clamp(4.2rem,15vw,12rem)] leading-[0.8] tracking-[0.06em]">
-                  <GlitchTitle text="Asaiverse" className="text-ghost" />
-                </p>
-              </div>
-            </motion.div>
-
-            <div
-              data-hero-journey-content
-              className="flex flex-col px-5 pb-10 pt-4 md:px-8 md:pb-12 md:pt-6"
-            >
-
-            <div className="mt-4 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease, delay: 0.22 }}
-              >
-                <h1 className="max-w-xl font-display text-3xl tracking-[0.08em] text-cyan md:text-5xl">
-                  Esports events that
-                  <span className="text-magenta"> break </span>
-                  the meta
-                </h1>
-                <p className="mt-4 max-w-md text-sm leading-relaxed text-ghost-dim md:text-base">
-                  We throw LANs, arena majors, and creator takeovers — stages
-                  built for clutches, crowds, and content that goes nuclear.
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="flex flex-wrap gap-3"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.7 }}
-              >
-                <MagneticButton href="/events" variant="solid">
-                  View Events
-                </MagneticButton>
-                <MagneticButton href="/contact">Book Chaos</MagneticButton>
-              </motion.div>
-            </div>
-
-            <motion.div
-              className="mt-10 flex items-center justify-between pt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ghost-dim"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.65 }}
-            >
-              <span className="text-lime">01 · Init</span>
-              <span className="scroll-cue text-cyan">Scroll to frag</span>
-              <span className="text-magenta">India · Global</span>
-            </motion.div>
-          </div>
-          </div>
-          </div>
-        </div>
-      </section>
-
-      <Marquee items={marqueeItems} fast />
-      <div className="hidden md:block">
-        <Marquee items={[...marqueeItems].reverse()} reverse />
-      </div>
+      <Marquee items={marqueeHighlights} />
+      <Marquee items={marqueeItems} reverse />
 
       <div
         data-scroll-rule

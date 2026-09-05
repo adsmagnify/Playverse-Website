@@ -24,6 +24,15 @@ export const navLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
+export const marqueeHighlights = [
+  "High-Stakes Tournaments",
+  "Exclusive Merchandise & Rewards",
+  "Interactive Creator Hubs",
+  "Live Streaming & Commentary",
+  "Community Giveaways",
+  "Celebrity Guest Showmatches",
+];
+
 export const marqueeItems = [
   "VALORANT",
   "CS2",
@@ -244,4 +253,49 @@ export const tickerMatches = [
   { label: "DROP", value: "Zone Wars DEL" },
   { label: "FGC", value: "Pixel Brawl" },
   { label: "LAN", value: "48H Queue" },
+];
+
+export type HomePanel = {
+  label: string;
+  copy: string;
+  href: string;
+  image: string;
+  accent: "cyan" | "magenta" | "lime";
+};
+
+export const homePanels: HomePanel[] = [
+  {
+    label: "Cosplay",
+    copy: "Armour builds, runway walks, and craft judged under full stage light.",
+    href: "/events",
+    // Valorant agent cosplayers, Japan Expo 2024. Photo by Miguel Discart &
+    // Kiri Karma, CC BY-SA 2.0 — this licence REQUIRES visible credit on the
+    // site (author, licence, link). https://commons.wikimedia.org/wiki/File:Japan_Expo_2024-07-12_-_Valorant_Cosplayers.jpg
+    image: "/cosplay-valorant.jpg",
+    accent: "magenta",
+  },
+  {
+    label: "Esports",
+    copy: "LAN nights, arena majors, and tournament seasons built for clutch moments.",
+    href: "/events",
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80",
+    accent: "cyan",
+  },
+  {
+    label: "Concert",
+    copy: "Live stages, headline sets, and crowds wired into the drop.",
+    href: "/events",
+    image:
+      "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1600&q=80",
+    accent: "lime",
+  },
+  {
+    label: "Exhibition",
+    copy: "Show floors, brand activations, and hands-on booths that pull queues.",
+    href: "/events",
+    image:
+      "https://images.unsplash.com/photo-1711390811760-1e9f2ab28cb7?auto=format&fit=crop&w=1600&q=80",
+    accent: "magenta",
+  },
 ];

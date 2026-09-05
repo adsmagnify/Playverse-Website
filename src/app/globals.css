@@ -68,7 +68,14 @@ body {
 
 @media (pointer: coarse) {
   body,
-  button {
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  label,
+  summary,
+  [role="button"] {
     cursor: auto;
   }
 }
@@ -81,6 +88,18 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* UA styles set their own cursor on links and form controls, which overrides
+   the inherited `none` and paints a native cursor next to the custom one. */
+a,
+input,
+textarea,
+select,
+label,
+summary,
+[role="button"] {
+  cursor: none;
 }
 
 button {
@@ -351,7 +370,15 @@ button {
     animation: none;
   }
 
-  body {
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  label,
+  summary,
+  [role="button"] {
     cursor: auto;
   }
 
@@ -508,4 +535,83 @@ button {
 .pv-transition-glitch {
   color: var(--cyan);
   text-shadow: 2px 0 var(--magenta), -2px 0 var(--lime);
+}
+
+/* Diagonal split hero — four skewed panels with vertical labels */
+.pv-diagonal-rail {
+  --slant: 11deg;
+  --bleed: 10vh;
+  width: calc(100% + var(--bleed) * 2);
+  margin-left: calc(var(--bleed) * -1);
+}
+
+.pv-diagonal-panel {
+  transform: skewX(calc(var(--slant) * -1));
+}
+
+.pv-diagonal-unskew {
+  transform: skewX(var(--slant));
+}
+
+/* The rail hangs --bleed off each side, so the outer panels centre their label
+   into hidden space. Inset the box back to the visible centre. */
+.pv-diagonal-panel:first-child .pv-diagonal-unskew {
+  left: var(--bleed);
+}
+
+.pv-diagonal-panel:last-child .pv-diagonal-unskew {
+  right: var(--bleed);
+}
+
+/* Label column leans back onto the panel's own angle, then each glyph is
+   counter-skewed so the letters stay undistorted while the stack runs diagonal. */
+.pv-diagonal-lean {
+  transform: skewX(calc(var(--slant) * -1));
+}
+
+.pv-diagonal-letter {
+  display: block;
+  transform: skewX(var(--slant));
+}
+
+/* Size inversely to letter count so COSPLAY (7) and EXHIBITION (10) occupy the
+   same vertical band instead of leaving the shorter labels floating. */
+.pv-diagonal-label {
+  font-size: clamp(1rem, calc(34vh / var(--label-len, 8)), 3.4rem);
+}
+
+/* Counter-skewed media needs slack on both sides to cover the parallelogram */
+.pv-diagonal-media {
+  position: absolute;
+  inset: 0 -32%;
+  transform: skewX(var(--slant));
+}
+
+/* Small lift on hover so the active panel reads as raised — the scale has to
+   re-declare the skew, since transform is a single property. */
+@media (hover: hover) and (pointer: fine) {
+  .pv-diagonal-panel {
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .pv-diagonal-panel:hover {
+    z-index: 2;
+    transform: skewX(calc(var(--slant) * -1)) scale(1.035);
+    box-shadow: 0 0 55px rgba(0, 0, 0, 0.65);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-diagonal-panel {
+    transition: none;
+  }
+}
+
+@media (max-width: 767px), (pointer: coarse) {
+  .pv-diagonal-rail {
+    --slant: 4.5deg;
+    --bleed: 4vh;
+  }
 }

@@ -537,6 +537,18 @@ button {
   text-shadow: 2px 0 var(--magenta), -2px 0 var(--lime);
 }
 
+/* Attribution links must read as links: the global `a { text-decoration: none }`
+   is unlayered, so it beats Tailwind's `underline` utility. */
+.pv-credit-link {
+  color: var(--ghost-dim);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.pv-credit-link:hover {
+  color: var(--cyan);
+}
+
 /* Diagonal split hero — four skewed panels with vertical labels */
 .pv-diagonal-rail {
   --slant: 11deg;

@@ -268,9 +268,8 @@ export const homePanels: HomePanel[] = [
     label: "Cosplay",
     copy: "Armour builds, runway walks, and craft judged under full stage light.",
     href: "/events",
-    // Valorant agent cosplayers, Japan Expo 2024. Photo by Miguel Discart &
-    // Kiri Karma, CC BY-SA 2.0 — this licence REQUIRES visible credit on the
-    // site (author, licence, link). https://commons.wikimedia.org/wiki/File:Japan_Expo_2024-07-12_-_Valorant_Cosplayers.jpg
+    // Valorant agent cosplayers, Japan Expo 2024. CC BY-SA 2.0 — the required
+    // credit is rendered in the footer via `imageCredits` below.
     image: "/cosplay-valorant.jpg",
     accent: "magenta",
   },
@@ -297,5 +296,19 @@ export const homePanels: HomePanel[] = [
     image:
       "https://images.unsplash.com/photo-1711390811760-1e9f2ab28cb7?auto=format&fit=crop&w=1600&q=80",
     accent: "magenta",
+  },
+];
+
+/** CC-licensed media used on the site. These licences require visible credit,
+ *  so the footer renders this list — do not remove it while the assets are in
+ *  use. Add an entry alongside any new attributed image. */
+export const imageCredits = [
+  {
+    label: "Cosplay panel photo",
+    author: "Miguel Discart & Kiri Karma",
+    license: "CC BY-SA 2.0",
+    licenseHref: "https://creativecommons.org/licenses/by-sa/2.0/",
+    sourceHref:
+      "https://commons.wikimedia.org/wiki/File:Japan_Expo_2024-07-12_-_Valorant_Cosplayers.jpg",
   },
 ];

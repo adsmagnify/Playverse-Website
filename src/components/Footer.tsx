@@ -1,4 +1,4 @@
-import { siteMeta } from "@/data/content";
+import { imageCredits, siteMeta } from "@/data/content";
 
 export function Footer() {
   return (
@@ -35,8 +35,39 @@ export function Footer() {
           </a>
         </div>
       </div>
-      <div className="mx-auto mt-10 max-w-7xl border-t border-line pt-6 font-mono text-[10px] uppercase tracking-[0.16em] text-ghost-dim">
-        © {new Date().getFullYear()} Asaiverse · GG · WP · FF
+      <div className="mx-auto mt-10 max-w-7xl border-t border-line pt-6">
+        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ghost-dim">
+          © {new Date().getFullYear()} Asaiverse · GG · WP · FF
+        </p>
+        {imageCredits.length > 0 && (
+          <ul className="mt-3 space-y-1">
+            {imageCredits.map((credit) => (
+              <li
+                key={credit.sourceHref}
+                className="text-[10px] leading-relaxed text-ghost-dim/70"
+              >
+                {credit.label}:{" "}
+                <a
+                  href={credit.sourceHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pv-credit-link"
+                >
+                  {credit.author}
+                </a>{" "}
+                &middot;{" "}
+                <a
+                  href={credit.licenseHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pv-credit-link"
+                >
+                  {credit.license}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </footer>
   );

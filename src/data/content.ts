@@ -229,6 +229,57 @@ export const eventsHeroImage =
 export const contactHeroImage =
   "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=2400&q=80";
 
+export const registrationHeroImage =
+  "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2400&q=80";
+
+export const registrationCategories = [
+  {
+    id: "visitor",
+    title: "Visitor",
+    tag: "Fans · Spectators · Players",
+    copy: "Regular entry for visitors, or competitive registration for BGMI, Valorant, and Free Fire.",
+    href: "/registration/visitor",
+    accent: "cyan",
+  },
+  {
+    id: "cosplayer",
+    title: "Cosplayer",
+    tag: "Stage · Parade · Showcase",
+    copy: "Register your character, costume details, and stage requirements in one form.",
+    href: "/registration/cosplayer",
+    accent: "magenta",
+  },
+  {
+    id: "sponsors",
+    title: "Sponsors",
+    tag: "Brands · Partners · Booths",
+    copy: "Tell us about your brand and the sponsorship tier you want to explore.",
+    href: "/registration/sponsors",
+    accent: "lime",
+  },
+] as const;
+
+export const playerGames = [
+  {
+    id: "bgmi",
+    title: "BGMI",
+    format: "Squad · Mobile",
+    fee: 499,
+  },
+  {
+    id: "valorant",
+    title: "Valorant",
+    format: "5v5 · PC",
+    fee: 599,
+  },
+  {
+    id: "freefire",
+    title: "Free Fire",
+    format: "Squad · Mobile",
+    fee: 399,
+  },
+] as const;
+
 export const heroScrollBeat = {
   image: "/BGMI_image.png",
   eyebrow: "Next drop",

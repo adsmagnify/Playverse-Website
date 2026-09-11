@@ -167,7 +167,7 @@ export default function HomePage() {
                 <MagneticButton href="/events" variant="solid">
                   View Events
                 </MagneticButton>
-                <MagneticButton href="/contact">Book Chaos</MagneticButton>
+                <MagneticButton href="/registration">Register</MagneticButton>
               </motion.div>
             </div>
 
@@ -400,8 +400,8 @@ export default function HomePage() {
             </p>
           </div>
           <div data-scroll-cta-copy>
-            <MagneticButton href="/contact" variant="solid">
-              Start a Season
+            <MagneticButton href="/registration" variant="solid">
+              Register Now
             </MagneticButton>
           </div>
         </div>

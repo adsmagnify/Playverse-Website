@@ -61,8 +61,8 @@ export default function AboutPage() {
             overclocks across India — with production that hits like a ranked
             promo game.
           </p>
-          <MagneticButton href="/contact" variant="solid">
-            Squad Up
+          <MagneticButton href="/registration" variant="solid">
+            Register
           </MagneticButton>
         </Reveal>
       </PageSection>

@@ -32,12 +32,12 @@ export function Header() {
           scrolled || open ? "bg-void/85 backdrop-blur-md" : "bg-transparent"
         }`}
       >
-        <div className="flex h-12 items-center justify-between px-5 md:h-14 md:px-8">
+        <div className="flex h-14 items-center justify-between px-5 md:h-16 md:px-8">
           <CursorTarget label="HOME" chaos>
             <TransitionLink
               href="/"
               onClick={() => setOpen(false)}
-              className="inline-flex shrink-0 translate-y-1 items-center md:translate-y-1.5"
+              className="inline-flex shrink-0 translate-y-1.5 items-center md:translate-y-2"
               direction="back"
             >
               <img
@@ -45,7 +45,7 @@ export function Header() {
                 alt={siteMeta.name}
                 width={280}
                 height={84}
-                className="h-16 w-auto md:h-[4.5rem]"
+                className="h-[4.25rem] w-auto md:h-20"
               />
             </TransitionLink>
           </CursorTarget>
@@ -64,11 +64,11 @@ export function Header() {
             ))}
             <CursorTarget label="DROP">
               <TransitionLink
-                href="/contact"
-                className="pv-btn pv-btn--solid !py-2 !px-4 !text-[9px]"
+                href="/registration"
+                className="pv-btn pv-btn--solid !px-4 !py-2.5 !text-[10px]"
                 direction="forward"
               >
-                Book an Event
+                Registration
               </TransitionLink>
             </CursorTarget>
           </nav>
@@ -122,7 +122,17 @@ export function Header() {
                   </motion.li>
                 ))}
               </ul>
-              <p className="font-mono text-sm text-cyan">{siteMeta.email}</p>
+              <div className="space-y-4">
+                <TransitionLink
+                  href="/registration"
+                  onClick={() => setOpen(false)}
+                  className="pv-btn pv-btn--solid inline-flex"
+                  direction="forward"
+                >
+                  Registration
+                </TransitionLink>
+                <p className="font-mono text-sm text-cyan">{siteMeta.email}</p>
+              </div>
             </nav>
           </motion.div>
         )}

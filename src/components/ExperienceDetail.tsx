@@ -79,8 +79,8 @@ export function ExperienceDetail({
             {experience.description}
           </p>
           <div className="mt-8">
-            <MagneticButton href="/contact" variant="solid">
-              Host This Format
+            <MagneticButton href="/registration" variant="solid">
+              Register
             </MagneticButton>
           </div>
         </Reveal>

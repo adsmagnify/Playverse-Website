@@ -16,7 +16,7 @@ export default function RegistrationPage() {
       <PageHero
         badge="Registration open"
         image={registrationHeroImage}
-        description="Choose your lane — visitor, cosplayer, or sponsor. Player registrations include game selection and payment."
+        description="Asaiverse is a multi-dimensional festival — choose visitor, cosplayer, or sponsor registration to join the experience."
         heading={
           <>
             <GlitchTitle text="Join" />

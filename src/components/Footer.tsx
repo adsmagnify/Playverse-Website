@@ -16,8 +16,8 @@ export function Footer() {
             {siteMeta.tagline}
           </p>
           <p className="mt-3 max-w-sm text-sm text-ghost-dim">
-            Esports events company — LANs, arena majors, creator stages, and
-            seasons engineered for chaos.
+            A premier gaming, esports, technology, and digital culture festival
+            created by ASAI.
           </p>
         </div>
         <div className="flex flex-wrap gap-5 font-mono text-[11px] uppercase tracking-[0.16em] text-ghost-dim">

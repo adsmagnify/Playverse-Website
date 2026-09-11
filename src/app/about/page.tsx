@@ -11,6 +11,7 @@ import {
 } from "@/components/PlayVerseUI";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import {
+  aboutContent,
   aboutHeroImage,
   marqueeItems,
   principles,
@@ -25,12 +26,12 @@ export default function AboutPage() {
       <PageHero
         badge="About Asaiverse"
         image={aboutHeroImage}
-        description="Asaiverse is an esports events company. We build the nights where brackets matter, casters lose their minds, and the crowd becomes the fifth player."
+        description={aboutContent.heroDescription}
         heading={
           <>
-            <GlitchTitle text="Born in" />
+            <GlitchTitle text="Built by" />
             <br />
-            <span className="text-cyan">the lobby</span>
+            <span className="text-cyan">ASAI</span>
           </>
         }
       />
@@ -41,26 +42,18 @@ export default function AboutPage() {
       <PageSection containerClassName="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
-            Origin
+            About
           </p>
           <h2 className="mt-3 font-display text-4xl tracking-[0.06em] md:text-6xl">
-            Not another
+            More than
             <br />
-            boring AV crew
+            an event
           </h2>
         </Reveal>
         <Reveal delay={0.1} className="space-y-6 text-base leading-8 text-ghost-dim md:text-lg">
-          <p>
-            We came from scrims, campus cups, and Discord raids that deserved
-            better stages. Asaiverse exists to turn competitive gaming into
-            full-body experiences — lights, audio, walkouts, and formats that
-            feel illegal in the best way.
-          </p>
-          <p>
-            Today we run LANs, arena majors, BGMI tours, FGC cups, and creator
-            overclocks across India — with production that hits like a ranked
-            promo game.
-          </p>
+          <p>{aboutContent.intro}</p>
+          <p>{aboutContent.body}</p>
+          <p>{aboutContent.closing}</p>
           <MagneticButton href="/registration" variant="solid">
             Register
           </MagneticButton>
@@ -70,10 +63,10 @@ export default function AboutPage() {
       <PageSection variant="alt">
         <Reveal>
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
-            Scoreboard
+            Festival Scale
           </p>
           <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-6xl">
-            Killfeed numbers
+            The universe
           </h2>
         </Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -91,10 +84,10 @@ export default function AboutPage() {
       <PageSection>
         <Reveal>
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
-            Playbook
+            Purpose
           </p>
           <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-6xl">
-            Creed
+            Vision & mission
           </h2>
         </Reveal>
         <Stagger className="mt-12 grid gap-4 md:grid-cols-2">

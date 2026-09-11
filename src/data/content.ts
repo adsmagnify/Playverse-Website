@@ -1,8 +1,8 @@
 export const siteMeta = {
   name: "Asaiverse",
-  title: "Asaiverse | Esports Events That Hit Different",
+  title: "Asaiverse | Gaming, Esports & Digital Culture Festival",
   description:
-    "Asaiverse is an esports events company — esports, creators, and cosplay. LAN nights, tournament seasons, creator stages, and arena takeovers built for chaos and competition.",
+    "Asaiverse is a premier gaming, esports, technology, and digital culture festival by ASAI — where competition, creativity, technology, and entertainment converge.",
   email: "hello@asaiverse.com",
   logo: "/asaiverse-logo.svg",
   favicon: "/asaiverse-favicon.svg",
@@ -19,65 +19,80 @@ export const siteMeta = {
 
 export const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Events", href: "/events" },
+  { label: "Zones", href: "/events" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
+export const aboutContent = {
+  heroDescription:
+    "A premier gaming, esports, technology, and digital culture festival created by ASAI.",
+  intro:
+    "Asaiverse is a premier gaming, esports, technology, and digital culture festival designed to bring together gamers, creators, innovators, brands, and fans in one immersive experience. Created by ASAI, Asaiverse serves as a dynamic platform where competition, creativity, technology, and entertainment converge to celebrate the future of interactive culture.",
+  body:
+    "More than just an event, Asaiverse is a community-driven ecosystem that showcases the evolving world of gaming and digital experiences. From high-stakes esports tournaments and creator meet-and-greets to cutting-edge technology exhibitions, cosplay showcases, indie game demonstrations, live performances, and fan engagement activities, Asaiverse offers something for every enthusiast.",
+  closing:
+    "Built around the belief that gaming is one of the most influential cultural forces of the modern era, Asaiverse aims to connect passionate communities, empower emerging talent, and provide brands with meaningful opportunities to engage with the next generation of consumers. With dedicated zones for esports, creators, technology, cosplay, indie gaming, food, and live entertainment, Asaiverse transforms a traditional event into a vibrant festival where competition meets innovation and communities come together to create unforgettable experiences.",
+  vision:
+    "To become India's most iconic gaming and digital culture festival, connecting millions through gaming, technology, creativity, and entertainment.",
+  mission:
+    "To create a world-class platform that empowers gamers, creators, developers, brands, and communities while driving the growth of the gaming and digital entertainment ecosystem.",
+};
+
 export const marqueeItems = [
-  "VALORANT",
-  "CS2",
-  "LEAGUE",
   "BGMI",
-  "APEX",
-  "DOTA 2",
-  "FNCS",
-  "ROCKET LEAGUE",
-  "FIGHTING GAMES",
-  "SPEEDRUNS",
-  "CREATOR LANS",
-  "BOOTCAMPS",
+  "VALORANT",
+  "FREE FIRE",
+  "COSPLAY",
+  "CREATORS",
+  "TECH EXPO",
+  "INDIE GAMES",
+  "FOOD FEST",
+  "LIVE CONCERT",
+  "FAN HUNT",
+  "MAIN STAGE",
+  "MERCH MARKET",
 ];
 
 export const stats = [
-  { label: "Peak Concurrent", value: "92", suffix: "K" },
-  { label: "Events Staged", value: "214", suffix: "+" },
-  { label: "Prize Pools", value: "1.8", suffix: "Cr+" },
-  { label: "Cities Lit", value: "18", suffix: "" },
+  { label: "Festival Zones", value: "9", suffix: "" },
+  { label: "Integrated Experiences", value: "6", suffix: "" },
+  { label: "Esports Titles", value: "3", suffix: "" },
+  { label: "Main Stage", value: "1", suffix: "" },
 ];
 
 export const disciplines = [
   {
-    id: "tactical",
-    title: "Tactical Shooters",
-    tag: "VAL · CS2 · Apex",
-    copy: "Clutch rounds, stage smoke, and crowd detonations when the bomb goes down.",
+    id: "esports",
+    title: "Esports Zones",
+    tag: "BGMI · Valorant · Free Fire",
+    copy: "Professional tournaments, community competitions, live broadcasts, and fan challenges across India's biggest mobile and PC titles.",
     image:
       "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    id: "moba",
-    title: "MOBA Wars",
-    tag: "League · Dota",
-    copy: "Draft boards, baron calls, and arena lighting synced to every objective.",
+    id: "culture",
+    title: "Creator & Cosplay",
+    tag: "Creators · Cosplay",
+    copy: "Meet influencers, showcase costumes, join competitions, and connect with the communities that shape gaming culture.",
     image:
-      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    id: "battle",
-    title: "Battle Royale",
-    tag: "BGMI · Fortnite",
-    copy: "Zone collapses, drop spots, and jumbotron chaos for mobile + PC crowds.",
+    id: "tech",
+    title: "Tech & Indie",
+    tag: "Hardware · Startups · Indie",
+    copy: "Explore gaming hardware, AI and immersive tech, startup innovations, and unreleased indie titles from emerging studios.",
     image:
-      "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    id: "hybrid",
-    title: "Hybrid Stages",
-    tag: "Creators · FGC · LAN",
-    copy: "Fighting game brackets, speedrun showcases, and influencer LAN takeovers.",
+    id: "entertainment",
+    title: "Food & Live Entertainment",
+    tag: "Food Fest · Concerts",
+    copy: "Multi-cuisine food stalls, community seating, rock performances, celebrity appearances, and grand closing ceremonies.",
     image:
-      "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1600&q=80",
   },
 ];
 
@@ -91,129 +106,265 @@ export type Experience = {
   description: string;
   image: string;
   featured?: boolean;
+  attractions?: string[];
 };
 
 export const experiences: Experience[] = [
   {
-    slug: "neon-rift-invitational",
-    title: "Neon Rift Invitational",
-    category: "VALORANT",
-    location: "Mumbai Arena",
-    season: "S1 2026",
-    summary: "16 teams. One rift. Floodlights, fog, and final-map hysteria.",
+    slug: "bgmi-zone",
+    title: "BGMI Zone",
+    category: "Esports",
+    location: "Festival Arena",
+    season: "Asaiverse Festival",
+    summary:
+      "India's most popular mobile esports battleground — tournaments, fan challenges, and live broadcasts.",
     description:
-      "Our flagship VALORANT invitational — broadcast-ready stage design, player cam tunnels, and a live crowd calibrated for every clutch. From opening night to grand final, the whole building runs like a boss fight.",
+      "The BGMI Zone serves as the battleground for one of India's most popular mobile esports titles. Featuring professional tournaments, community competitions, fan challenges, and live match broadcasts, this zone attracts both competitive players and spectators. Attendees can witness high-level gameplay, interact with teams, and participate in open tournaments.",
+    image: "/BGMI_image.png",
+    featured: true,
+    attractions: [
+      "Professional esports tournaments",
+      "Community competitions",
+      "Team meet-and-greets",
+      "Live commentary and analysis",
+      "Fan challenges and giveaways",
+    ],
+  },
+  {
+    slug: "valorant-zone",
+    title: "Valorant Zone",
+    category: "Esports",
+    location: "Tactical Arena",
+    season: "Asaiverse Festival",
+    summary:
+      "Tactical shooter arena with competitive matches, creator showdowns, and immersive spectator experiences.",
+    description:
+      "Dedicated to tactical shooter enthusiasts, the Valorant Zone hosts competitive matches, creator showdowns, and community tournaments. Designed to replicate the excitement of a professional esports arena, the zone offers an immersive experience for players and fans alike.",
     image:
       "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1800&q=80",
     featured: true,
+    attractions: [
+      "Competitive Valorant tournaments",
+      "Creator and influencer matches",
+      "Team showcases",
+      "Tactical gaming workshops",
+      "Live spectator arena",
+    ],
   },
   {
-    slug: "circuit-break-lan",
-    title: "Circuit Break LAN",
-    category: "Multi-title LAN",
-    location: "Bengaluru",
-    season: "Quarterly",
-    summary: "48-hour LAN fever dream — brackets, bootcamps, and midnight queues.",
+    slug: "free-fire-zone",
+    title: "Free Fire Zone",
+    category: "Esports",
+    location: "Mobile Arena",
+    season: "Asaiverse Festival",
+    summary:
+      "Fast-paced battle royale tournaments, skill challenges, and community meetups.",
     description:
-      "A roaming multi-title LAN with open brackets, creator showmatches, and production that feels like a music festival crashed into a server room.",
+      "The Free Fire Zone celebrates one of the world's most widely played mobile battle royale games. Players can compete in fast-paced tournaments, participate in skill challenges, and connect with fellow members of the Free Fire community.",
     image:
-      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1800&q=80",
+      "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1800&q=80",
     featured: true,
+    attractions: [
+      "Battle Royale tournaments",
+      "Open participation competitions",
+      "Skill-based challenges",
+      "Community meetups",
+      "Merchandise and rewards",
+    ],
   },
   {
-    slug: "zone-wars-india",
-    title: "Zone Wars India",
-    category: "BGMI",
-    location: "Delhi NCR",
-    season: "2026 Tour",
-    summary: "Mobile royale on a stadium screen — drops, zones, and deafening casters.",
+    slug: "tech-exhibition-zone",
+    title: "Tech Exhibition Zone",
+    category: "Technology",
+    location: "Innovation Pavilion",
+    season: "Asaiverse Festival",
+    summary:
+      "Gaming hardware, AI, immersive tech, and startup innovations shaping digital experiences.",
     description:
-      "A BGMI touring circuit built for phone-in-hand fans and jumbotron drama. Squad intros, hype packages, and stage craft made for mobile esports energy.",
+      "The Tech Exhibition Zone showcases innovations shaping the future of gaming and digital experiences. Technology brands, startups, hardware manufacturers, and software companies present their latest products, solutions, and innovations.",
     image:
-      "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=1800&q=80",
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1800&q=80",
     featured: true,
+    attractions: [
+      "Gaming hardware displays",
+      "Emerging technology showcases",
+      "AI and immersive technology experiences",
+      "Startup innovation pavilion",
+      "Product demonstrations",
+    ],
   },
   {
-    slug: "pixel-brawl-cup",
-    title: "Pixel Brawl Cup",
-    category: "Fighting Games",
-    location: "Hyderabad",
-    season: "Summer",
-    summary: "FGC sacred ground — pools to top 8 under neon and vinyl seats.",
+    slug: "cosplay-zone",
+    title: "Cosplay Zone",
+    category: "Cosplay",
+    location: "Creator Stage",
+    season: "Asaiverse Festival",
+    summary:
+      "Costume competitions, character showcases, judging panels, and fan photo sessions.",
     description:
-      "A fighting game cup with classic bracket energy, player cams on every punish, and a venue layout that keeps the crowd inches from the setup.",
+      "The Cosplay Zone celebrates creativity and fandom culture. Cosplayers, artists, and enthusiasts can showcase their costumes, participate in competitions, and engage with fans through photo sessions and stage appearances.",
+    image: "/cosplay-zone.png",
+    featured: true,
+    attractions: [
+      "Cosplay competitions",
+      "Character showcases",
+      "Professional judging panels",
+      "Fan interaction sessions",
+      "Photography opportunities",
+    ],
+  },
+  {
+    slug: "creators-zone",
+    title: "Creators Zone",
+    category: "Creators",
+    location: "Community Hub",
+    season: "Asaiverse Festival",
+    summary:
+      "Meet gaming influencers, streamers, and creators through live sessions and fan activities.",
+    description:
+      "The Creators Zone brings together gaming influencers, streamers, content creators, and their communities. Fans can meet their favorite creators, participate in interactive activities, and enjoy exclusive content experiences.",
+    image:
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1800&q=80",
+    featured: true,
+    attractions: [
+      "Creator meet-and-greets",
+      "Fan interaction sessions",
+      "Live content creation",
+      "Creator challenges",
+      "Community activities",
+    ],
+  },
+  {
+    slug: "food-festival-zone",
+    title: "Food Festival Zone",
+    category: "Food & Culture",
+    location: "Social Hub",
+    season: "Asaiverse Festival",
+    summary:
+      "Multi-cuisine stalls, regional specialties, and a social relaxation hub within the festival.",
+    description:
+      "The Food Festival Zone offers a diverse culinary experience featuring regional specialties, international cuisine, quick-service outlets, and experiential food stalls. It serves as a social and relaxation hub within the festival.",
+    image:
+      "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1800&q=80",
+    attractions: [
+      "Multi-cuisine food stalls",
+      "Regional food experiences",
+      "Beverage stations",
+      "Food competitions",
+      "Community seating areas",
+    ],
+  },
+  {
+    slug: "rock-concert-zone",
+    title: "Rock Concert & Entertainment Zone",
+    category: "Entertainment",
+    location: "Main Stage",
+    season: "Asaiverse Festival",
+    summary:
+      "Live rock performances, music concerts, celebrity appearances, and closing ceremonies.",
+    description:
+      "Asaiverse extends beyond gaming with live entertainment designed to energize audiences and create memorable experiences. The entertainment zone hosts musical performances, cultural acts, celebrity appearances, and evening headline shows.",
+    image:
+      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1800&q=80",
+    attractions: [
+      "Live rock performances",
+      "Music concerts",
+      "Celebrity appearances",
+      "Cultural performances",
+      "Grand closing ceremonies",
+    ],
+  },
+  {
+    slug: "indie-gaming-zone",
+    title: "Indie Gaming Zone",
+    category: "Indie Games",
+    location: "Developer Pavilion",
+    season: "Asaiverse Festival",
+    summary:
+      "Unreleased indie titles, developer interactions, and the next generation of gaming talent.",
+    description:
+      "The Indie Gaming Zone provides a platform for independent developers and emerging studios to showcase innovative games and creative projects. Visitors can experience unreleased titles, interact directly with developers, and discover the next generation of gaming talent.",
     image:
       "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=1800&q=80",
-    featured: true,
+    attractions: [
+      "Indie game showcases",
+      "Playtesting opportunities",
+      "Developer interactions",
+      "Startup gaming studios",
+      "Innovation awards",
+    ],
+  },
+];
+
+export const integratedExperiences = [
+  {
+    title: "Fan Hunt Program",
+    copy: "Interactive challenges and missions encouraging attendees to explore every zone while earning rewards, collectibles, and exclusive experiences.",
   },
   {
-    slug: "creator-overclock",
-    title: "Creator Overclock",
-    category: "Creator Event",
-    location: "Pan-India",
-    season: "Drop weekends",
-    summary: "Influencer LANs, challenge shows, and content that breaks timelines.",
-    description:
-      "Custom creator events engineered for clips — challenge formats, surprise guests, and production designed to go viral before the VOD hits.",
-    image:
-      "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=1800&q=80",
+    title: "Creator Challenges",
+    copy: "Competitive and entertainment-focused activities involving creators, professional players, and community participants.",
   },
   {
-    slug: "bootcamp-forge",
-    title: "Bootcamp Forge",
-    category: "Team Bootcamp",
-    location: "Private facilities",
-    season: "On demand",
-    summary: "Pro house takeovers with scrim stages and content capture built-in.",
-    description:
-      "Full bootcamp production for orgs — practice rooms, content corners, and logistical ops so teams can lock in before majors.",
-    image:
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1800&q=80",
+    title: "Community Tournaments",
+    copy: "Open-access competitions allowing visitors to compete and win prizes throughout the event.",
+  },
+  {
+    title: "Brand Experience Activations",
+    copy: "Interactive booths and experiential marketing installations from leading gaming, technology, lifestyle, and consumer brands.",
+  },
+  {
+    title: "Merchandise Marketplace",
+    copy: "Official merchandise, gaming collectibles, creator merchandise, cosplay accessories, and exclusive Asaiverse products.",
+  },
+  {
+    title: "Main Stage Arena",
+    copy: "The central hub for major announcements, award ceremonies, esports finals, creator appearances, and entertainment performances.",
   },
 ];
 
 export const principlesIntro =
-  "Every Asaiverse event runs on the same playbook — loud on purpose, tight on ops, and built so players, crowds, and cameras all catch the same moment.";
+  "Together, these zones and experiences transform Asaiverse into a complete gaming and digital culture festival where competition, creativity, technology, and entertainment exist within a single connected universe.";
 
 export const principles = [
   {
-    title: "Chaos, directed",
-    copy: "We don’t calm the crowd — we design the spike. Sound, lights, and pacing timed to the round.",
+    title: "Our Vision",
+    copy: aboutContent.vision,
   },
   {
-    title: "Stage is a weapon",
-    copy: "Every tunnel, LED wall, and caster desk is part of the meta. The venue plays too.",
+    title: "Our Mission",
+    copy: aboutContent.mission,
   },
   {
-    title: "Players are bosses",
-    copy: "From player cams to walkouts, competitors get main-character treatment — always.",
+    title: "Community First",
+    copy: "A community-driven ecosystem that connects passionate gamers, creators, innovators, brands, and fans in one immersive festival experience.",
   },
   {
-    title: "Clips or it didn’t happen",
-    copy: "Formats built for moments that travel: highlight packages, creator hooks, and shareable insanity.",
+    title: "One Connected Universe",
+    copy: "Dedicated zones for esports, creators, technology, cosplay, indie gaming, food, and live entertainment — all woven into a single festival world.",
   },
 ];
 
 export const faqs = [
   {
-    q: "What kind of events does Asaiverse run?",
-    a: "LAN tournaments, arena majors, campus circuits, creator showmatches, bootcamps, and brand-powered esports seasons across PC and mobile titles.",
+    q: "What is Asaiverse?",
+    a: "Asaiverse is a premier gaming, esports, technology, and digital culture festival created by ASAI. It brings together competitive gaming, creator culture, technology exhibitions, cosplay, indie games, food, and live entertainment in one connected experience.",
   },
   {
-    q: "Can you produce for our title / org?",
-    a: "Yes. We build formats around VALORANT, CS2, BGMI, League, FGC, and custom multi-game LANs — plus full production crews.",
+    q: "What zones can I explore?",
+    a: "Nine dedicated zones: BGMI, Valorant, Free Fire, Tech Exhibition, Cosplay, Creators, Food Festival, Rock Concert & Entertainment, and Indie Gaming — plus festival-wide experiences like Fan Hunt, Main Stage, and the Merchandise Marketplace.",
   },
   {
-    q: "Do you handle broadcast and stage?",
-    a: "End-to-end: stage design, LED, audio, OBS/broadcast, casters, talent booking, and on-site ops.",
+    q: "How do I register as a player?",
+    a: "Head to Registration, choose Visitor, then register as a Player. Select BGMI, Valorant, or Free Fire, submit your details, and complete payment to confirm your slot.",
   },
   {
-    q: "Campus or city-level — what’s the minimum?",
-    a: "From 64-player campus cups to multi-day arena events. Tell us the headcount and vibe; we’ll spec the chaos.",
+    q: "Can cosplayers and sponsors register online?",
+    a: "Yes. Cosplayers and sponsors each have dedicated registration forms on the Registration page to submit their details in one step.",
   },
   {
-    q: "How do we book a season?",
-    a: "Hit contact with your title, city, and budget range. We’ll send a format deck and production timeline.",
+    q: "Who created Asaiverse?",
+    a: "Asaiverse is created by ASAI as a world-class platform to empower gamers, creators, developers, brands, and communities across India's gaming and digital entertainment ecosystem.",
   },
 ];
 
@@ -282,17 +433,17 @@ export const playerGames = [
 
 export const heroScrollBeat = {
   image: "/BGMI_image.png",
-  eyebrow: "Next drop",
-  title: "Zone Wars India",
-  category: "BGMI · Delhi NCR",
-  copy: "Mobile royale on a stadium screen — drops, zones, and deafening casters.",
-  href: "/events/zone-wars-india",
+  eyebrow: "Featured Zone",
+  title: "BGMI Zone",
+  category: "Esports · Mobile Arena",
+  copy: "Professional tournaments, community competitions, live broadcasts, and fan challenges.",
+  href: "/events/bgmi-zone",
 };
 
 export const tickerMatches = [
-  { label: "LIVE", value: "NRI · Map 3" },
-  { label: "NEXT", value: "Circuit Break" },
-  { label: "DROP", value: "Zone Wars DEL" },
-  { label: "FGC", value: "Pixel Brawl" },
-  { label: "LAN", value: "48H Queue" },
+  { label: "LIVE", value: "BGMI Finals" },
+  { label: "NEXT", value: "Valorant Zone" },
+  { label: "DROP", value: "Cosplay Stage" },
+  { label: "HUB", value: "Creators Zone" },
+  { label: "STAGE", value: "Main Arena" },
 ];

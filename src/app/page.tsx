@@ -25,8 +25,8 @@ import {
   experiences,
   heroImage,
   heroScrollBeat,
+  integratedExperiences,
   marqueeItems,
-  principles,
   principlesIntro,
   stats,
   tickerMatches,
@@ -116,7 +116,7 @@ export default function HomePage() {
               </p>
               <div className="mt-6">
                 <MagneticButton href={heroScrollBeat.href} variant="solid">
-                  View Event
+                  Explore Zone
                 </MagneticButton>
               </div>
             </div>
@@ -148,13 +148,13 @@ export default function HomePage() {
                 transition={{ duration: 0.8, ease, delay: 0.22 }}
               >
                 <h1 className="max-w-xl font-display text-3xl tracking-[0.08em] text-cyan md:text-5xl">
-                  Esports events that
-                  <span className="text-magenta"> break </span>
-                  the meta
+                  India&apos;s gaming &
+                  <span className="text-magenta"> digital </span>
+                  culture festival
                 </h1>
                 <p className="mt-4 max-w-md text-sm leading-relaxed text-ghost-dim md:text-base">
-                  We throw LANs, arena majors, and creator takeovers — stages
-                  built for clutches, crowds, and content that goes nuclear.
+                  Esports, creators, cosplay, tech, indie games, food, and live
+                  entertainment — one immersive festival by ASAI.
                 </p>
               </motion.div>
 
@@ -165,7 +165,7 @@ export default function HomePage() {
                 transition={{ delay: 0.4, duration: 0.7 }}
               >
                 <MagneticButton href="/events" variant="solid">
-                  View Events
+                  Explore Zones
                 </MagneticButton>
                 <MagneticButton href="/registration">Register</MagneticButton>
               </motion.div>
@@ -178,8 +178,8 @@ export default function HomePage() {
               transition={{ delay: 0.65 }}
             >
               <span className="text-lime">01 · Init</span>
-              <span className="scroll-cue text-cyan">Scroll to frag</span>
-              <span className="text-magenta">India · Global</span>
+              <span className="scroll-cue text-cyan">Scroll to explore</span>
+              <span className="text-magenta">Created by ASAI</span>
             </motion.div>
           </div>
           </div>
@@ -207,26 +207,26 @@ export default function HomePage() {
         <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
-              Scoreboard
+              The Festival
             </p>
             <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-7xl">
               <span className="block overflow-hidden">
                 <span data-scroll-line className="block">
-                  We don&apos;t host
+                  One universe.
                 </span>
               </span>
               <span className="block overflow-hidden">
-                <span data-scroll-line className="block text-cyan">events.</span>
+                <span data-scroll-line className="block text-cyan">Nine zones.</span>
               </span>
               <span className="block overflow-hidden">
                 <span data-scroll-line className="block text-magenta">
-                  We drop raids.
+                  Infinite experiences.
                 </span>
               </span>
             </h2>
             <p className="mt-5 max-w-sm text-sm text-ghost-dim">
-              Production, ops, talent, and stage design fused into one esports
-              machine — loud on purpose.
+              A multi-dimensional festival where esports, creators, technology,
+              and entertainment converge in one connected ecosystem.
             </p>
           </Reveal>
           <div className="grid gap-2 sm:grid-cols-2">
@@ -255,10 +255,10 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl">
           <Reveal className="mb-10 md:mb-14">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-magenta">
-              Loadout
+              Festival Lanes
             </p>
             <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-7xl">
-              Titles we torch
+              Explore by world
             </h2>
           </Reveal>
           <div className="grid gap-4 md:grid-cols-2">
@@ -278,13 +278,13 @@ export default function HomePage() {
           <Reveal className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan">
-                Fixture feed
+                Featured Zones
               </p>
               <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-7xl">
-                Upcoming mayhem
+                Enter the arena
               </h2>
             </div>
-            <MagneticButton href="/events">All Events</MagneticButton>
+            <MagneticButton href="/events">All Zones</MagneticButton>
           </Reveal>
 
           <div className="mb-10" data-scroll-ticker>
@@ -316,31 +316,29 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-7xl">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
-              Playbook
+              Connected Universe
             </p>
             <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-7xl">
-              Rules of engagement
+              Integrated experiences
             </h2>
             <p className="mt-5 max-w-2xl text-sm text-ghost-dim md:text-base">
               {principlesIntro}
             </p>
           </Reveal>
-          <div className="mt-14 grid gap-4 md:grid-cols-2">
-            {principles.map((p, i) => (
+          <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {integratedExperiences.map((item, i) => (
               <article
-                key={p.title}
+                key={item.title}
                 data-scroll-principle
                 className="group relative overflow-hidden border border-line bg-void/50 p-6 transition hover:border-cyan md:p-8"
               >
-                  <span className="font-mono text-cyan text-sm">
-                    0{i + 1}
-                  </span>
-                  <h3 className="mt-3 font-display text-3xl tracking-[0.05em] group-hover:text-magenta md:text-4xl">
-                    {p.title}
-                  </h3>
-                  <p className="mt-3 text-sm text-ghost-dim md:text-base">{p.copy}</p>
-                  <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-cyan/10 blur-2xl transition group-hover:bg-magenta/20" />
-                </article>
+                <span className="font-mono text-cyan text-sm">0{i + 1}</span>
+                <h3 className="mt-3 font-display text-2xl tracking-[0.05em] group-hover:text-magenta md:text-3xl">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm text-ghost-dim md:text-base">{item.copy}</p>
+                <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-cyan/10 blur-2xl transition group-hover:bg-magenta/20" />
+              </article>
             ))}
           </div>
         </div>
@@ -386,17 +384,17 @@ export default function HomePage() {
               Final round
             </p>
             <h2 className="mt-3 max-w-2xl font-display text-5xl tracking-[0.06em] md:text-7xl">
-              Ready to make
+              Ready to join
               <br />
-              the <span className="text-cyan">server</span> scream?
+              the <span className="text-cyan">festival</span>?
             </h2>
             <p className="mt-4 flex flex-wrap items-center gap-3 text-sm text-ghost-dim">
               <CountUp
-                value="214"
-                suffix="+"
+                value="9"
+                suffix=""
                 className="font-display text-4xl text-ghost"
               />
-              <span>events already in the killfeed</span>
+              <span>dedicated zones waiting to be explored</span>
             </p>
           </div>
           <div data-scroll-cta-copy>

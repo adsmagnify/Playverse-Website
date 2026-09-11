@@ -78,6 +78,22 @@ export function ExperienceDetail({
           <p className="mt-4 text-lg leading-8 text-ghost md:text-xl md:leading-9">
             {experience.description}
           </p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
+            Key Attractions
+          </p>
+          {experience.attractions?.length ? (
+            <ul className="mt-6 space-y-3">
+              {experience.attractions.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 text-sm text-ghost-dim md:text-base"
+                >
+                  <span className="text-cyan">▸</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
           <div className="mt-8">
             <MagneticButton href="/registration" variant="solid">
               Register
@@ -109,10 +125,10 @@ export function ExperienceDetail({
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
-              Fixture feed
+              More zones
             </p>
             <h2 className="mt-3 font-display text-4xl tracking-[0.06em] md:text-5xl">
-              More lobbies
+              Explore further
             </h2>
           </div>
           <TransitionLink
@@ -120,7 +136,7 @@ export function ExperienceDetail({
             className="font-mono text-[11px] uppercase tracking-[0.16em] text-cyan hover:text-magenta"
             direction="back"
           >
-            All events →
+            All zones →
           </TransitionLink>
         </div>
         <div className="grid gap-8 md:grid-cols-2">

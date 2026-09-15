@@ -10,10 +10,12 @@ export function SharedEventImage({
   slug,
   src,
   overlayClassName = "",
+  imageClassName = "",
 }: {
   slug: string;
   src: string;
   overlayClassName?: string;
+  imageClassName?: string;
 }) {
   const style: CSSProperties = {
     viewTransitionName: eventImageTransitionName(slug),
@@ -23,7 +25,7 @@ export function SharedEventImage({
   return (
     <>
       <div
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        className={`absolute inset-0 z-0 bg-cover bg-center bg-no-repeat ${imageClassName}`}
         style={style}
         aria-hidden
       />

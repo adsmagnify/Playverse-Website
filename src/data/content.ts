@@ -161,8 +161,7 @@ export const experiences: Experience[] = [
       "Fast-paced battle royale tournaments, skill challenges, and community meetups.",
     description:
       "The Free Fire Zone celebrates one of the world's most widely played mobile battle royale games. Players can compete in fast-paced tournaments, participate in skill challenges, and connect with fellow members of the Free Fire community.",
-    image:
-      "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1800&q=80",
+    image: "/free-fire-zone.jpg",
     featured: true,
     attractions: [
       "Battle Royale tournaments",
@@ -183,7 +182,7 @@ export const experiences: Experience[] = [
     description:
       "The Tech Exhibition Zone showcases innovations shaping the future of gaming and digital experiences. Technology brands, startups, hardware manufacturers, and software companies present their latest products, solutions, and innovations.",
     image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1800&q=80",
+      "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=1800&q=80",
     featured: true,
     attractions: [
       "Gaming hardware displays",
@@ -285,7 +284,7 @@ export const experiences: Experience[] = [
     description:
       "The Indie Gaming Zone provides a platform for independent developers and emerging studios to showcase innovative games and creative projects. Visitors can experience unreleased titles, interact directly with developers, and discover the next generation of gaming talent.",
     image:
-      "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=1800&q=80",
+      "https://images.unsplash.com/photo-1511882150382-421056c89033?auto=format&fit=crop&w=1800&q=80",
     attractions: [
       "Indie game showcases",
       "Playtesting opportunities",
@@ -430,15 +429,6 @@ export const playerGames = [
     fee: 399,
   },
 ] as const;
-
-export const heroScrollBeat = {
-  image: "/BGMI_image.png",
-  eyebrow: "Featured Zone",
-  title: "BGMI Zone",
-  category: "Esports · Mobile Arena",
-  copy: "Professional tournaments, community competitions, live broadcasts, and fan challenges.",
-  href: "/events/bgmi-zone",
-};
 
 export const tickerMatches = [
   { label: "LIVE", value: "BGMI Finals" },

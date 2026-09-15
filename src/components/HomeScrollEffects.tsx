@@ -31,20 +31,17 @@ export function HomeScrollEffects({
       );
       const heroMark = root.querySelector<HTMLElement>("[data-journey-mark]");
       const heroBg = root.querySelector<HTMLElement>("[data-scroll-hero-bg]");
-      const heroBgAlt = root.querySelector<HTMLElement>("[data-scroll-hero-bg-alt]");
       const heroWash = root.querySelector<HTMLElement>("[data-scroll-hero-wash]");
-      const heroReveal = root.querySelector<HTMLElement>("[data-hero-reveal]");
-      const heroRevealScrim = root.querySelector<HTMLElement>(
-        "[data-hero-reveal-scrim]"
+      const zonesReveal = root.querySelector<HTMLElement>("[data-zones-reveal]");
+      const zonesRevealScrim = root.querySelector<HTMLElement>(
+        "[data-zones-reveal-scrim]"
       );
+      const zonesSection = root.querySelector<HTMLElement>("[data-scroll-zones]");
+      const zoneCards = root.querySelectorAll<HTMLElement>("[data-scroll-zone-card]");
       const statsSection = root.querySelector<HTMLElement>("[data-scroll-stats]");
       const statsLines = root.querySelectorAll<HTMLElement>("[data-scroll-line]");
       const statItems = root.querySelectorAll<HTMLElement>("[data-scroll-stat]");
       const scrollLines = root.querySelectorAll<HTMLElement>("[data-scroll-rule]");
-      const disciplineCards = root.querySelectorAll<HTMLElement>(
-        "[data-scroll-discipline]"
-      );
-      const eventsSection = root.querySelector<HTMLElement>("[data-scroll-events]");
       const principleCards = root.querySelectorAll<HTMLElement>(
         "[data-scroll-principle]"
       );
@@ -61,14 +58,11 @@ export function HomeScrollEffects({
           gsap.set(heroMark, { transformOrigin: "left bottom" });
         }
         gsap.set(heroBg, { filter: "brightness(1)", scale: 1, yPercent: 0 });
-        if (heroBgAlt) {
-          gsap.set(heroBgAlt, { opacity: 0, scale: mobile ? 1 : 1.08 });
+        if (zonesReveal) {
+          gsap.set(zonesReveal, { opacity: 0, y: mobile ? 20 : 32 });
         }
-        if (heroReveal) {
-          gsap.set(heroReveal, { opacity: 0, y: mobile ? 20 : 32 });
-        }
-        if (heroRevealScrim) {
-          gsap.set(heroRevealScrim, { opacity: 0 });
+        if (zonesRevealScrim) {
+          gsap.set(zonesRevealScrim, { opacity: 0 });
         }
         if (heroContent) {
           gsap.set(heroContent, {
@@ -122,49 +116,34 @@ export function HomeScrollEffects({
             );
           }
 
-          if (heroBgAlt) {
+          if (zonesRevealScrim) {
             journeyTl.fromTo(
-              heroBg,
-              { opacity: 1 },
-              { opacity: 0, duration: 0.32, ease: "power2.inOut" },
-              0.22
-            );
-            journeyTl.fromTo(
-              heroBgAlt,
-              { opacity: 0 },
-              { opacity: 1, duration: 0.34, ease: "power2.out" },
-              0.22
-            );
-          }
-
-          if (heroRevealScrim) {
-            journeyTl.fromTo(
-              heroRevealScrim,
+              zonesRevealScrim,
               { opacity: 0 },
               { opacity: 1, duration: 0.24, ease: "power2.out" },
               0.28
             );
           }
 
-          if (heroReveal) {
+          if (zonesReveal) {
             journeyTl.fromTo(
-              heroReveal,
+              zonesReveal,
               { opacity: 0, y: 20 },
               { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" },
               0.32
             );
             journeyTl.to(
-              heroReveal,
+              zonesReveal,
               { opacity: 0, y: -16, duration: 0.18, ease: "power2.in" },
-              0.72
+              0.78
             );
           }
 
-          if (heroRevealScrim) {
+          if (zonesRevealScrim) {
             journeyTl.to(
-              heroRevealScrim,
+              zonesRevealScrim,
               { opacity: 0, duration: 0.18, ease: "power2.in" },
-              0.72
+              0.78
             );
           }
 
@@ -242,49 +221,34 @@ export function HomeScrollEffects({
             );
           }
 
-          if (heroBgAlt) {
+          if (zonesRevealScrim) {
             journeyTl.fromTo(
-              heroBg,
-              { opacity: 1 },
-              { opacity: 0, duration: 0.38, ease: "power2.inOut" },
-              0.28
-            );
-            journeyTl.fromTo(
-              heroBgAlt,
-              { opacity: 0, scale: 1.08 },
-              { opacity: 1, scale: 1, duration: 0.42, ease: "power2.out" },
-              0.28
-            );
-          }
-
-          if (heroRevealScrim) {
-            journeyTl.fromTo(
-              heroRevealScrim,
+              zonesRevealScrim,
               { opacity: 0 },
               { opacity: 1, duration: 0.28, ease: "power2.out" },
               0.34
             );
           }
 
-          if (heroReveal) {
+          if (zonesReveal) {
             journeyTl.fromTo(
-              heroReveal,
+              zonesReveal,
               { opacity: 0, y: 32 },
               { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
               0.38
             );
             journeyTl.to(
-              heroReveal,
+              zonesReveal,
               { opacity: 0, y: -24, duration: 0.2, ease: "power2.in" },
-              0.8
+              0.82
             );
           }
 
-          if (heroRevealScrim) {
+          if (zonesRevealScrim) {
             journeyTl.to(
-              heroRevealScrim,
+              zonesRevealScrim,
               { opacity: 0, duration: 0.2, ease: "power2.in" },
-              0.8
+              0.82
             );
           }
 
@@ -374,40 +338,25 @@ export function HomeScrollEffects({
         });
       }
 
-      if (!mobile) {
-        disciplineCards.forEach((card, i) => {
-          gsap.from(card, {
-            x: i % 2 === 0 ? -70 : 70,
-            opacity: 0,
-            rotate: i % 2 === 0 ? -2 : 2,
-            duration: 0.85,
+      if (zoneCards.length) {
+        gsap.fromTo(
+          zoneCards,
+          { y: mobile ? 24 : 40, opacity: 0, scale: mobile ? 1 : 0.96 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            stagger: mobile ? 0.05 : 0.07,
+            duration: mobile ? 0.55 : 0.75,
             ease: "power3.out",
+            immediateRender: false,
             scrollTrigger: {
-              trigger: card,
-              start: "top 88%",
+              trigger: zonesSection ?? zoneCards[0],
+              start: "top 78%",
               toggleActions: once,
             },
-          });
-        });
-      }
-
-      if (eventsSection && !mobile) {
-        const ticker = eventsSection.querySelector<HTMLElement>(
-          "[data-scroll-ticker]"
+          }
         );
-        if (ticker) {
-          gsap.from(ticker, {
-            x: 80,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: ticker,
-              start: "top 90%",
-              toggleActions: once,
-            },
-          });
-        }
       }
 
       if (principleCards.length) {

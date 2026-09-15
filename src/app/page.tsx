@@ -8,35 +8,29 @@ import { Footer } from "@/components/Footer";
 import { FaqList } from "@/components/FaqList";
 import { HomeScrollEffects } from "@/components/HomeScrollEffects";
 import {
-  DisciplineCard,
-  ExperienceCard,
   FloatingOrbs,
   GlitchTitle,
   HudCorners,
   MagneticButton,
   Marquee,
-  ScoreTicker,
   SplitStat,
   StadiumLights,
 } from "@/components/PlayVerseUI";
+import { ZoneShowcase } from "@/components/ZoneShowcase";
 import { CountUp, Reveal } from "@/components/motion";
 import {
-  disciplines,
   experiences,
   heroImage,
-  heroScrollBeat,
   integratedExperiences,
   marqueeItems,
   principlesIntro,
   stats,
-  tickerMatches,
 } from "@/data/content";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function HomePage() {
   const mainRef = useRef<HTMLElement>(null);
-  const featured = experiences.filter((e) => e.featured);
 
   return (
     <main ref={mainRef} className="bg-void text-ghost">
@@ -44,7 +38,7 @@ export default function HomePage() {
       <Header />
 
       {/* HERO → STATS scroll journey */}
-      <section data-hero-journey className="relative max-md:min-h-[170vh]">
+      <section data-hero-journey className="relative max-md:min-h-[190vh]">
         <div
           data-hero-journey-pin
           data-scroll-hero
@@ -66,19 +60,6 @@ export default function HomePage() {
             />
           </div>
           <div
-            data-scroll-hero-bg-alt
-            className="absolute inset-0 z-0 overflow-hidden opacity-0 md:will-change-transform"
-          >
-            <Image
-              src={heroScrollBeat.image}
-              alt=""
-              fill
-              draggable={false}
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-          </div>
-          <div
             data-scroll-hero-wash
             className="pointer-events-none absolute inset-0 z-[1]"
           >
@@ -93,32 +74,16 @@ export default function HomePage() {
           <HudCorners className="z-10 opacity-70" />
 
           <div
-            data-hero-reveal
-            className="pointer-events-none absolute inset-0 z-[11] flex items-center px-5 opacity-0 md:px-8"
+            data-zones-reveal
+            className="absolute inset-0 z-[11] flex flex-col overflow-hidden opacity-0"
           >
             <div
-              data-hero-reveal-scrim
-              className="pointer-events-none absolute inset-0 bg-gradient-to-r from-void/95 via-void/75 to-void/35"
+              data-zones-reveal-scrim
+              className="pointer-events-none absolute inset-0 bg-gradient-to-b from-void/90 via-void/85 to-void/95"
               aria-hidden
             />
-            <div className="pointer-events-auto relative max-w-xl">
-              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
-                {heroScrollBeat.eyebrow}
-              </p>
-              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-cyan">
-                {heroScrollBeat.category}
-              </p>
-              <h2 className="mt-3 font-display text-[clamp(2.4rem,7vw,4.5rem)] leading-[0.92] tracking-[0.06em]">
-                {heroScrollBeat.title}
-              </h2>
-              <p className="mt-4 max-w-md text-sm leading-relaxed text-ghost-dim md:text-base">
-                {heroScrollBeat.copy}
-              </p>
-              <div className="mt-6">
-                <MagneticButton href={heroScrollBeat.href} variant="solid">
-                  Explore Zone
-                </MagneticButton>
-              </div>
+            <div className="pointer-events-auto relative min-h-0 flex-1">
+              <ZoneShowcase zones={experiences} variant="compact" />
             </div>
           </div>
 
@@ -187,6 +152,14 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ALL 9 ZONES */}
+      <section
+        data-scroll-zones
+        className="relative border-y border-line px-5 py-16 md:px-8 md:py-24"
+      >
+        <ZoneShowcase zones={experiences} variant="full" />
+      </section>
+
       <Marquee items={marqueeItems} fast />
       <div className="hidden md:block">
         <Marquee items={[...marqueeItems].reverse()} reverse />
@@ -249,64 +222,6 @@ export default function HomePage() {
         className="mx-auto h-px max-w-7xl origin-left bg-gradient-to-r from-lime via-cyan to-magenta opacity-50"
         aria-hidden
       />
-
-      {/* TITLES / DISCIPLINES */}
-      <section className="px-5 py-12 md:px-8 md:py-16">
-        <div className="mx-auto max-w-7xl">
-          <Reveal className="mb-10 md:mb-14">
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-magenta">
-              Festival Lanes
-            </p>
-            <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-7xl">
-              Explore by world
-            </h2>
-          </Reveal>
-          <div className="grid gap-4 md:grid-cols-2">
-            {disciplines.map((d, i) => (
-              <DisciplineCard key={d.id} {...d} index={i} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* EVENTS */}
-      <section
-        data-scroll-events
-        className="border-t border-line px-5 py-20 md:px-8 md:py-28"
-      >
-        <div className="mx-auto max-w-7xl">
-          <Reveal className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan">
-                Featured Zones
-              </p>
-              <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-7xl">
-                Enter the arena
-              </h2>
-            </div>
-            <MagneticButton href="/events">All Zones</MagneticButton>
-          </Reveal>
-
-          <div className="mb-10" data-scroll-ticker>
-            <ScoreTicker items={tickerMatches} />
-          </div>
-
-          <div className="grid gap-10 md:grid-cols-2">
-            {featured.map((exp) => (
-              <ExperienceCard
-                key={exp.slug}
-                slug={exp.slug}
-                href={`/events/${exp.slug}`}
-                title={exp.title}
-                category={exp.category}
-                location={exp.location}
-                summary={exp.summary}
-                image={exp.image}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* PRINCIPLES */}
       <section className="relative overflow-hidden border-t border-line bg-void-2 px-5 py-20 md:px-8 md:py-28">

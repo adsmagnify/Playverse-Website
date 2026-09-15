@@ -218,50 +218,54 @@ export function DisciplineCard({
   image: string;
   index: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const mx = useMotionValue(50);
   const my = useMotionValue(50);
   const bg = useMotionTemplate`radial-gradient(420px circle at ${mx}% ${my}%, rgba(0,240,255,0.25), transparent 40%)`;
 
   return (
     <CursorTarget label="QUEUE" chaos>
-      <motion.article
+      <article
         ref={ref}
         data-scroll-discipline
-        className="group relative min-h-[440px] overflow-hidden border border-line bg-void-2"
+        className="group min-h-[320px] md:min-h-[440px]"
         onMouseMove={(e) => {
           const r = ref.current?.getBoundingClientRect();
           if (!r) return;
           mx.set(((e.clientX - r.left) / r.width) * 100);
           my.set(((e.clientY - r.top) / r.height) * 100);
         }}
-        whileHover={{ scale: 1.01 }}
       >
         <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 group-hover:saturate-150"
-          style={{ backgroundImage: `url(${image})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-void via-void/60 to-void/10" />
-        <motion.div
-          className="absolute inset-0 opacity-0 mix-blend-screen transition-opacity group-hover:opacity-100"
-          style={{ background: bg }}
-        />
-        <div className="absolute inset-x-0 top-0 flex justify-between p-5 font-mono text-[10px] uppercase tracking-[0.2em] text-cyan">
-          <span>0{index + 1}</span>
-          <span className="text-magenta">{tag}</span>
+          data-scroll-discipline-panel
+          className="relative h-full min-h-[320px] overflow-hidden border border-line bg-void-2 transition-transform duration-500 group-hover:scale-[1.01] md:min-h-[440px]"
+        >
+          <div
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 group-hover:saturate-150"
+            style={{ backgroundImage: `url(${image})` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-void via-void/60 to-void/10" />
+          <motion.div
+            className="absolute inset-0 opacity-0 mix-blend-screen transition-opacity group-hover:opacity-100"
+            style={{ background: bg }}
+          />
+          <div className="absolute inset-x-0 top-0 flex justify-between p-5 font-mono text-[10px] uppercase tracking-[0.2em] text-cyan">
+            <span>0{index + 1}</span>
+            <span className="text-magenta">{tag}</span>
+          </div>
+          <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+            <h3 className="font-display text-4xl tracking-[0.06em] md:text-5xl">
+              <span className="group-hover:hidden">{title}</span>
+              <span className="hidden group-hover:inline">
+                <GlitchTitle text={title} />
+              </span>
+            </h3>
+            <p className="mt-3 max-w-sm text-sm text-ghost-dim opacity-90 transition md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
+              {copy}
+            </p>
+          </div>
         </div>
-        <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
-          <h3 className="font-display text-4xl tracking-[0.06em] md:text-5xl">
-            <span className="group-hover:hidden">{title}</span>
-            <span className="hidden group-hover:inline">
-              <GlitchTitle text={title} />
-            </span>
-          </h3>
-          <p className="mt-3 max-w-sm text-sm text-ghost-dim opacity-90 transition md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
-            {copy}
-          </p>
-        </div>
-      </motion.article>
+      </article>
     </CursorTarget>
   );
 }

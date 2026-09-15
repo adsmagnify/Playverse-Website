@@ -36,12 +36,16 @@ export function HomeScrollEffects({
       const zonesRevealScrim = root.querySelector<HTMLElement>(
         "[data-zones-reveal-scrim]"
       );
-      const zonesSection = root.querySelector<HTMLElement>("[data-scroll-zones]");
-      const zoneCards = root.querySelectorAll<HTMLElement>("[data-scroll-zone-card]");
       const statsSection = root.querySelector<HTMLElement>("[data-scroll-stats]");
       const statsLines = root.querySelectorAll<HTMLElement>("[data-scroll-line]");
       const statItems = root.querySelectorAll<HTMLElement>("[data-scroll-stat]");
       const scrollLines = root.querySelectorAll<HTMLElement>("[data-scroll-rule]");
+      const disciplinesSection = root.querySelector<HTMLElement>(
+        "[data-scroll-disciplines]"
+      );
+      const disciplinePanels = root.querySelectorAll<HTMLElement>(
+        "[data-scroll-discipline-panel]"
+      );
       const principleCards = root.querySelectorAll<HTMLElement>(
         "[data-scroll-principle]"
       );
@@ -338,25 +342,37 @@ export function HomeScrollEffects({
         });
       }
 
-      if (zoneCards.length) {
-        gsap.fromTo(
-          zoneCards,
-          { y: mobile ? 24 : 40, opacity: 0, scale: mobile ? 1 : 0.96 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            stagger: mobile ? 0.05 : 0.07,
-            duration: mobile ? 0.55 : 0.75,
-            ease: "power3.out",
-            immediateRender: false,
-            scrollTrigger: {
-              trigger: zonesSection ?? zoneCards[0],
-              start: "top 78%",
-              toggleActions: once,
+      if (disciplinesSection && disciplinePanels.length) {
+        const disciplinesTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: disciplinesSection,
+            start: "top bottom",
+            end: "top 22%",
+            scrub: mobile ? 0.35 : 0.5,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        disciplinePanels.forEach((panel, i) => {
+          const fromLeft = i % 2 === 0;
+          const row = Math.floor(i / 2);
+
+          gsap.set(panel, {
+            xPercent: fromLeft ? -110 : 110,
+            opacity: 0,
+          });
+
+          disciplinesTl.to(
+            panel,
+            {
+              xPercent: 0,
+              opacity: 1,
+              duration: 0.32,
+              ease: "power2.out",
             },
-          }
-        );
+            row * 0.18
+          );
+        });
       }
 
       if (principleCards.length) {

@@ -37,15 +37,15 @@ export function Header() {
             <TransitionLink
               href="/"
               onClick={() => setOpen(false)}
-              className="inline-flex shrink-0 translate-y-1.5 items-center md:translate-y-2"
+              className="inline-flex shrink-0 translate-y-2 items-center md:translate-y-2.5"
               direction="back"
             >
               <img
                 src={siteMeta.logo}
                 alt={siteMeta.name}
-                width={280}
-                height={84}
-                className="h-[4.25rem] w-auto md:h-20"
+                width={320}
+                height={96}
+                className="h-[5rem] w-auto md:h-24"
               />
             </TransitionLink>
           </CursorTarget>
@@ -65,7 +65,7 @@ export function Header() {
             <CursorTarget label="DROP">
               <TransitionLink
                 href="/registration"
-                className="pv-btn pv-btn--solid !px-4 !py-2.5 !text-[10px]"
+                className="pv-btn pv-btn--solid !px-4 !py-2.5 !text-[11px] !font-bold"
                 direction="forward"
               >
                 Registration
@@ -126,7 +126,7 @@ export function Header() {
                 <TransitionLink
                   href="/registration"
                   onClick={() => setOpen(false)}
-                  className="pv-btn pv-btn--solid inline-flex"
+                  className="pv-btn pv-btn--solid inline-flex !font-bold"
                   direction="forward"
                 >
                   Registration

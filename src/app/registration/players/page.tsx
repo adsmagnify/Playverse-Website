@@ -34,11 +34,11 @@ export default function PlayerRegistrationPage() {
           <PlayerRegistrationForm />
         </Reveal>
         <TransitionLink
-          href="/registration/visitor"
+          href="/registration"
           className="mt-10 inline-block font-mono text-[11px] uppercase tracking-[0.16em] text-ghost-dim hover:text-cyan"
           direction="back"
         >
-          ← Back to visitor registration
+          ← All categories
         </TransitionLink>
       </PageSection>
 

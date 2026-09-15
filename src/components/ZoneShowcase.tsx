@@ -173,8 +173,8 @@ export function ZoneShowcase({
           <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-lime">
             09 · Festival Zones
           </p>
-          <h2 className="mt-1.5 font-display text-xl tracking-[0.06em] text-ghost md:text-3xl">
-            Nine worlds.{" "}
+          <h2 className="mt-1.5 font-display text-xl tracking-[0.06em] md:text-3xl">
+            <GlitchTitle text="Nine worlds." className="text-ghost" />{" "}
             <span className="text-cyan">One festival.</span>
           </h2>
         </div>
@@ -185,9 +185,14 @@ export function ZoneShowcase({
           ))}
         </div>
 
-        <p className="mt-3 shrink-0 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-ghost-dim">
-          Tap a zone to explore
-        </p>
+        <div className="mt-3 flex shrink-0 flex-col items-center gap-2">
+          <p className="text-center font-mono text-[10px] uppercase tracking-[0.18em] text-ghost-dim">
+            Tap a zone to explore
+          </p>
+          <MagneticButton href="/events" className="text-[10px] md:text-xs">
+            All zones
+          </MagneticButton>
+        </div>
       </div>
     );
   }

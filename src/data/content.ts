@@ -75,8 +75,7 @@ export const disciplines = [
     title: "Creator & Cosplay",
     tag: "Creators · Cosplay",
     copy: "Meet influencers, showcase costumes, join competitions, and connect with the communities that shape gaming culture.",
-    image:
-      "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=1600&q=80",
+    image: "/cosplay-zone.png",
   },
   {
     id: "tech",
@@ -355,11 +354,11 @@ export const faqs = [
   },
   {
     q: "How do I register as a player?",
-    a: "Head to Registration, choose Visitor, then register as a Player. Select BGMI, Valorant, or Free Fire, submit your details, and complete payment to confirm your slot.",
+    a: "Head to Registration and choose Player. Select BGMI, Valorant, or Free Fire, submit your squad details, and complete payment to confirm your slot.",
   },
   {
     q: "Can cosplayers and sponsors register online?",
-    a: "Yes. Cosplayers and sponsors each have dedicated registration forms on the Registration page to submit their details in one step.",
+    a: "Cosplayers register directly from the Registration page. Brands and sponsors can explore partnership tiers from the Sponsor section on the homepage.",
   },
   {
     q: "Who created Asaiverse?",
@@ -386,8 +385,8 @@ export const registrationCategories = [
   {
     id: "visitor",
     title: "Visitor",
-    tag: "Fans · Spectators · Players",
-    copy: "Regular entry for visitors, or competitive registration for BGMI, Valorant, and Free Fire.",
+    tag: "Fans · Spectators",
+    copy: "General festival entry for spectators and guests exploring the experience.",
     href: "/registration/visitor",
     accent: "cyan",
   },
@@ -400,14 +399,28 @@ export const registrationCategories = [
     accent: "magenta",
   },
   {
-    id: "sponsors",
-    title: "Sponsors",
-    tag: "Brands · Partners · Booths",
-    copy: "Tell us about your brand and the sponsorship tier you want to explore.",
-    href: "/registration/sponsors",
+    id: "players",
+    title: "Player",
+    tag: "BGMI · Valorant · Free Fire",
+    copy: "Register for tournament brackets — select your title, submit squad details, and complete payment.",
+    href: "/registration/players",
     accent: "lime",
   },
 ] as const;
+
+export const sponsorSection = {
+  badge: "Partners & Brands",
+  title: "Sponsor the",
+  titleAccent: "festival",
+  copy: "Connect with India's next generation of gamers, creators, and fans. Title sponsorship, zone activations, booths, and brand integrations available.",
+  tiers: [
+    "Title Sponsor",
+    "Zone Partner",
+    "Booth Activation",
+    "Brand Integration",
+  ],
+  href: "/registration/sponsors",
+};
 
 export const playerGames = [
   {

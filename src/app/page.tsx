@@ -8,6 +8,7 @@ import { Footer } from "@/components/Footer";
 import { FaqList } from "@/components/FaqList";
 import { HomeScrollEffects } from "@/components/HomeScrollEffects";
 import {
+  DisciplineCard,
   FloatingOrbs,
   GlitchTitle,
   HudCorners,
@@ -19,11 +20,13 @@ import {
 import { ZoneShowcase } from "@/components/ZoneShowcase";
 import { CountUp, Reveal } from "@/components/motion";
 import {
+  disciplines,
   experiences,
   heroImage,
   integratedExperiences,
   marqueeItems,
   principlesIntro,
+  sponsorSection,
   stats,
 } from "@/data/content";
 
@@ -152,14 +155,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ALL 9 ZONES */}
-      <section
-        data-scroll-zones
-        className="relative border-y border-line px-5 py-16 md:px-8 md:py-24"
-      >
-        <ZoneShowcase zones={experiences} variant="full" />
-      </section>
-
       <Marquee items={marqueeItems} fast />
       <div className="hidden md:block">
         <Marquee items={[...marqueeItems].reverse()} reverse />
@@ -223,6 +218,28 @@ export default function HomePage() {
         aria-hidden
       />
 
+      {/* FESTIVAL WORLDS */}
+      <section
+        data-scroll-disciplines
+        className="overflow-x-clip px-5 py-16 md:px-8 md:py-24"
+      >
+        <div className="mx-auto max-w-7xl">
+          <Reveal className="mb-10 md:mb-14">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-magenta">
+              Festival Lanes
+            </p>
+            <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-7xl">
+              Explore by world
+            </h2>
+          </Reveal>
+          <div className="grid gap-4 overflow-hidden md:grid-cols-2">
+            {disciplines.map((d, i) => (
+              <DisciplineCard key={d.id} {...d} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* PRINCIPLES */}
       <section className="relative overflow-hidden border-t border-line bg-void-2 px-5 py-20 md:px-8 md:py-28">
         <div className="hidden md:block">
@@ -256,6 +273,52 @@ export default function HomePage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* SPONSORS */}
+      <section className="relative overflow-hidden border-t border-line px-5 py-20 md:px-8 md:py-28">
+        <div className="field-grid absolute inset-0 opacity-40" />
+        <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-end">
+          <Reveal>
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
+              {sponsorSection.badge}
+            </p>
+            <h2 className="mt-3 font-display text-5xl tracking-[0.06em] md:text-7xl">
+              {sponsorSection.title}{" "}
+              <span className="text-lime">{sponsorSection.titleAccent}</span>
+            </h2>
+            <p className="mt-5 max-w-xl text-sm text-ghost-dim md:text-base">
+              {sponsorSection.copy}
+            </p>
+            <ul className="mt-8 flex flex-wrap gap-2">
+              {sponsorSection.tiers.map((tier) => (
+                <li
+                  key={tier}
+                  className="border border-lime/30 bg-void-2/60 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-lime"
+                >
+                  {tier}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <div className="relative border border-line bg-void-2/80 p-8 md:p-10">
+              <div className="rgb-border absolute inset-0 -z-10 opacity-40" />
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan">
+                Brand partnerships
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-ghost-dim md:text-base">
+                Put your brand in front of competitive gamers, creators, and
+                festival crowds across nine dedicated zones.
+              </p>
+              <div className="mt-8">
+                <MagneticButton href={sponsorSection.href} variant="solid">
+                  Become a Sponsor
+                </MagneticButton>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 

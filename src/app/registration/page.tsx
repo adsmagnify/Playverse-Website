@@ -16,7 +16,7 @@ export default function RegistrationPage() {
       <PageHero
         badge="Registration open"
         image={registrationHeroImage}
-        description="Asaiverse is a multi-dimensional festival — choose visitor, cosplayer, or sponsor registration to join the experience."
+        description="Asaiverse is a multi-dimensional festival — choose visitor, cosplayer, or player registration to join the experience."
         heading={
           <>
             <GlitchTitle text="Join" />
@@ -37,9 +37,8 @@ export default function RegistrationPage() {
             Pick your path
           </h2>
           <p className="mt-4 max-w-2xl text-sm text-ghost-dim md:text-base">
-            Visitors can enter as regular guests or register as competitive
-            players. Cosplayers and sponsors complete a single registration form
-            each.
+            Visitors get general festival access. Cosplayers and competitive
+            players each have a dedicated registration path.
           </p>
         </Reveal>
 

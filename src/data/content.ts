@@ -427,19 +427,19 @@ export const playerGames = [
     id: "bgmi",
     title: "BGMI",
     format: "Squad · Mobile",
-    fee: 499,
+    fee: 400,
   },
   {
     id: "valorant",
     title: "Valorant",
     format: "5v5 · PC",
-    fee: 599,
+    fee: 400,
   },
   {
     id: "freefire",
     title: "Free Fire",
     format: "Squad · Mobile",
-    fee: 399,
+    fee: 400,
   },
 ] as const;
 

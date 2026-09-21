@@ -4,6 +4,7 @@ import { TransitionLink } from "@/components/TransitionLink";
 import { SharedEventImage, SharedEventTitle } from "@/components/SharedEventMedia";
 import { GlitchTitle, MagneticButton } from "@/components/PlayVerseUI";
 import { Reveal } from "@/components/motion";
+import { ZoneOrbitMap } from "@/components/ZoneOrbitMap";
 import type { Experience } from "@/data/content";
 
 const zoneAccents = ["cyan", "magenta", "lime"] as const;
@@ -48,64 +49,6 @@ const accentStyles: Record<
 
 function zoneAccent(index: number): ZoneAccent {
   return zoneAccents[index % zoneAccents.length];
-}
-
-function compactZoneTitle(title: string) {
-  return title
-    .replace(/\s*&\s*Entertainment Zone$/i, "")
-    .replace(/ Zone$/i, "");
-}
-
-function ZoneTile({
-  zone,
-  index,
-}: {
-  zone: Experience;
-  index: number;
-}) {
-  const href = `/events/${zone.slug}`;
-  const num = String(index + 1).padStart(2, "0");
-  const accent = accentStyles[zoneAccent(index)];
-
-  return (
-    <TransitionLink
-      href={href}
-      data-zone-tile
-      direction="forward"
-      className={`group relative block h-full min-h-0 overflow-hidden border bg-void transition ${accent.card}`}
-    >
-      <div className="absolute inset-0 transition duration-700 ease-out group-hover:scale-[1.06]">
-        <SharedEventImage
-          slug={zone.slug}
-          src={zone.image}
-          imageClassName="brightness-[1.12] saturate-[1.15] contrast-[1.05]"
-          overlayClassName="bg-gradient-to-t from-void from-25% via-void/55 via-50% to-transparent"
-        />
-      </div>
-
-      <span
-        className={`absolute left-2 top-2 z-10 border px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] shadow-[0_0_16px_rgba(0,0,0,0.5)] md:text-[10px] ${accent.badge}`}
-      >
-        {num}
-      </span>
-
-      <div
-        className={`absolute inset-x-0 bottom-0 z-10 backdrop-blur-md ${accent.footer} px-2.5 py-2 md:px-3 md:py-2.5`}
-      >
-        <p
-          className={`font-mono text-[8px] uppercase tracking-[0.14em] md:text-[9px] ${accent.tag}`}
-        >
-          {zone.category}
-        </p>
-        <SharedEventTitle
-          slug={zone.slug}
-          className={`mt-0.5 line-clamp-1 font-display text-xs leading-tight tracking-[0.04em] text-ghost transition md:text-sm ${accent.titleHover}`}
-        >
-          {compactZoneTitle(zone.title)}
-        </SharedEventTitle>
-      </div>
-    </TransitionLink>
-  );
 }
 
 function ZoneCard({
@@ -168,29 +111,26 @@ export function ZoneShowcase({
 }) {
   if (variant === "compact") {
     return (
-      <div className="flex h-full min-h-0 flex-col overflow-hidden px-4 pb-4 pt-14 md:px-8 md:pb-6 md:pt-16">
-        <div className="mb-3 shrink-0 text-center md:mb-5">
-          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-lime">
-            09 · Festival Zones
+      <div className="flex h-full min-h-0 flex-col px-3 pb-1 pt-4 md:px-6 md:pt-5">
+        <div className="shrink-0 text-center">
+          <p className="font-mono text-[8px] uppercase tracking-[0.24em] text-lime md:text-[9px]">
+            Festival schematic
           </p>
-          <h2 className="mt-1.5 font-display text-xl tracking-[0.06em] md:text-3xl">
-            <GlitchTitle text="Nine worlds." className="text-ghost" />{" "}
-            <span className="text-cyan">One festival.</span>
+          <h2 className="font-display text-sm tracking-[0.06em] md:text-lg lg:text-xl">
+            <GlitchTitle text="One arena · 9 zones" className="text-ghost" />
           </h2>
         </div>
 
-        <div className="mx-auto grid min-h-0 w-full max-w-5xl flex-1 grid-cols-3 grid-rows-3 gap-2.5 md:gap-3.5">
-          {zones.map((zone, i) => (
-            <ZoneTile key={zone.slug} zone={zone} index={i} />
-          ))}
+        <div className="mx-auto flex min-h-0 w-full flex-1 items-center justify-center py-2">
+          <ZoneOrbitMap zones={zones} />
         </div>
 
-        <div className="mt-3 flex shrink-0 flex-col items-center gap-2">
-          <p className="text-center font-mono text-[10px] uppercase tracking-[0.18em] text-ghost-dim">
-            Tap a zone to explore
-          </p>
-          <MagneticButton href="/events" className="text-[10px] md:text-xs">
-            All zones
+        <div className="shrink-0 pb-1 text-center">
+          <MagneticButton
+            href="/events"
+            className="!px-3 !py-1.5 !text-[9px] md:!text-[10px]"
+          >
+            All zones →
           </MagneticButton>
         </div>
       </div>

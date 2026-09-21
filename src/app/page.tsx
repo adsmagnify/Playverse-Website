@@ -52,11 +52,11 @@ export default function HomePage() {
             data-scroll-hero-bg
             className="absolute inset-0 z-0 overflow-hidden md:will-change-transform"
           >
-            <Image
+        <Image
               src={heroImage}
               alt=""
               fill
-              priority
+          priority
               draggable={false}
               sizes="100vw"
               className="object-cover object-center"
@@ -384,6 +384,6 @@ export default function HomePage() {
       </section>
 
       <Footer />
-    </main>
+      </main>
   );
 }

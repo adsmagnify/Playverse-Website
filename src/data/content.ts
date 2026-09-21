@@ -140,7 +140,8 @@ export const experiences: Experience[] = [
     description:
       "Dedicated to tactical shooter enthusiasts, the Valorant Zone hosts competitive matches, creator showdowns, and community tournaments. Designed to replicate the excitement of a professional esports arena, the zone offers an immersive experience for players and fans alike.",
     image:
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1800&q=80",
+    "/valorant_image.png",  
+    // "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1800&q=80",
     featured: true,
     attractions: [
       "Competitive Valorant tournaments",
@@ -263,7 +264,8 @@ export const experiences: Experience[] = [
     description:
       "Asaiverse extends beyond gaming with live entertainment designed to energize audiences and create memorable experiences. The entertainment zone hosts musical performances, cultural acts, celebrity appearances, and evening headline shows.",
     image:
-      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1800&q=80",
+      // "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1800&q=80",
+      "rock-concert.jpg",
     attractions: [
       "Live rock performances",
       "Music concerts",

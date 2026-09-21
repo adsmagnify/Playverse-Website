@@ -181,6 +181,45 @@ button {
   box-shadow: 0 0 28px rgba(184, 255, 0, 0.45);
 }
 
+/* Shared neon card border used across every card on the site.
+   Base = cyan; add pv-card--magenta or pv-card--lime for variants. */
+.pv-card {
+  border: 1px solid rgba(0, 240, 255, 0.5);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pv-card:hover {
+  border-color: rgba(0, 240, 255, 1);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.12);
+}
+
+.pv-card--cyan {
+  border-color: rgba(0, 240, 255, 0.5);
+}
+
+.pv-card--cyan:hover {
+  border-color: rgba(0, 240, 255, 1);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.12);
+}
+
+.pv-card--magenta {
+  border-color: rgba(255, 43, 214, 0.5);
+}
+
+.pv-card--magenta:hover {
+  border-color: rgba(255, 43, 214, 1);
+  box-shadow: 0 0 40px rgba(255, 43, 214, 0.12);
+}
+
+.pv-card--lime {
+  border-color: rgba(184, 255, 0, 0.5);
+}
+
+.pv-card--lime:hover {
+  border-color: rgba(184, 255, 0, 1);
+  box-shadow: 0 0 40px rgba(184, 255, 0, 0.12);
+}
+
 .zone-orbit-node {
   box-shadow: inset 0 0 0 1px rgba(244, 244, 248, 0.08);
 }

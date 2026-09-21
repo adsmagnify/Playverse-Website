@@ -101,7 +101,7 @@ export function ExperienceDetail({
           </div>
         </Reveal>
         <Reveal delay={0.1}>
-          <dl className="space-y-4 border border-line/60 bg-void-2/80 p-6 backdrop-blur-md">
+          <dl className="pv-card pv-card--cyan space-y-4 bg-void-2/80 p-6 backdrop-blur-md">
             {[
               ["Category", experience.category],
               ["Location", experience.location],

@@ -91,16 +91,19 @@ export default function AboutPage() {
           </h2>
         </Reveal>
         <Stagger className="mt-12 grid gap-4 md:grid-cols-2">
-          {principles.map((p) => (
-            <StaggerItem key={p.title}>
-              <div className="border border-line p-7 transition hover:border-cyan hover:shadow-[0_0_40px_rgba(0,240,255,0.12)]">
-                <h3 className="font-display text-3xl tracking-[0.05em]">
-                  {p.title}
-                </h3>
-                <p className="mt-3 text-sm text-ghost-dim">{p.copy}</p>
-              </div>
-            </StaggerItem>
-          ))}
+          {principles.map((p, i) => {
+            const accent = (["cyan", "magenta", "lime"] as const)[i % 3];
+            return (
+              <StaggerItem key={p.title}>
+                <div className={`pv-card pv-card--${accent} bg-void-2/60 p-7`}>
+                  <h3 className="font-display text-3xl tracking-[0.05em]">
+                    {p.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-ghost-dim">{p.copy}</p>
+                </div>
+              </StaggerItem>
+            );
+          })}
         </Stagger>
       </PageSection>
 

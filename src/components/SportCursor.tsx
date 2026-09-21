@@ -98,7 +98,7 @@ export function SportCursor({ children }: { children: ReactNode }) {
             <div
               className={`relative grid place-items-center border ${
                 hovering
-                  ? "h-16 w-16 border-cyan bg-magenta/20 shadow-[0_0_30px_rgba(0,240,255,0.5)]"
+                  ? "h-24 w-24 border-cyan bg-magenta/20 shadow-[0_0_30px_rgba(0,240,255,0.5)]"
                   : "h-4 w-4 border-lime bg-cyan/80"
               }`}
               style={{
@@ -114,7 +114,7 @@ export function SportCursor({ children }: { children: ReactNode }) {
                     initial={{ opacity: 0, scale: 0.7 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
-                    className="absolute whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.2em] text-ghost"
+                    className="absolute whitespace-nowrap px-2 font-mono text-[9px] uppercase tracking-[0.14em] text-ghost"
                   >
                     {label}
                   </motion.span>

@@ -69,7 +69,7 @@ export function FormShell({
   }
 
   return (
-    <div className="relative border border-line bg-void-2/90 p-6 md:p-8">
+    <div className="pv-card pv-card--cyan relative bg-void-2/90 p-6 md:p-8">
       <div className="rgb-border absolute inset-0 -z-10 opacity-40" />
       <h2 className="font-display text-3xl tracking-[0.06em]">{title}</h2>
       {subtitle ? (
@@ -218,10 +218,10 @@ export function PlayerRegistrationForm() {
                   setDetailsSaved(false);
                   setPaid(false);
                 }}
-                className={`border p-6 text-left transition ${
+                className={`pv-card p-6 text-left ${
                   active
-                    ? "border-cyan bg-cyan/10 shadow-[0_0_30px_rgba(0,240,255,0.15)]"
-                    : "border-line bg-void-2/80 hover:border-magenta"
+                    ? "pv-card--cyan bg-cyan/10 shadow-[0_0_30px_rgba(0,240,255,0.15)]"
+                    : "pv-card--magenta bg-void-2/80"
                 }`}
               >
                 <p className="font-display text-3xl tracking-[0.06em]">{g.title}</p>
@@ -237,7 +237,7 @@ export function PlayerRegistrationForm() {
         </div>
       </div>
 
-      <div className="relative border border-line bg-void-2/90 p-6 md:p-8">
+      <div className="pv-card pv-card--magenta relative bg-void-2/90 p-6 md:p-8">
         <div className="rgb-border absolute inset-0 -z-10 opacity-40" />
         <h2 className="font-display text-3xl tracking-[0.06em]">Player Details</h2>
         <p className="mt-2 text-sm text-ghost-dim">
@@ -262,7 +262,7 @@ export function PlayerRegistrationForm() {
         )}
       </div>
 
-      <div className="relative border border-line bg-void-2/90 p-6 md:p-8">
+      <div className="pv-card pv-card--lime relative bg-void-2/90 p-6 md:p-8">
         <div className="rgb-border absolute inset-0 -z-10 opacity-40" />
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-magenta">
           Payment

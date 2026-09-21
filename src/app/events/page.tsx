@@ -75,17 +75,20 @@ export default function EventsPage() {
           </p>
         </Reveal>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {integratedExperiences.map((item, i) => (
-            <Reveal key={item.title} delay={0.06 * i}>
-              <article className="border border-line bg-void/50 p-6 md:p-8">
-                <span className="font-mono text-sm text-cyan">0{i + 1}</span>
-                <h3 className="mt-3 font-display text-2xl tracking-[0.05em] md:text-3xl">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm text-ghost-dim">{item.copy}</p>
-              </article>
-            </Reveal>
-          ))}
+          {integratedExperiences.map((item, i) => {
+            const accent = (["cyan", "magenta", "lime"] as const)[i % 3];
+            return (
+              <Reveal key={item.title} delay={0.06 * i}>
+                <article className={`pv-card pv-card--${accent} bg-void/50 p-6 md:p-8`}>
+                  <span className={`font-mono text-sm text-${accent}`}>0{i + 1}</span>
+                  <h3 className="mt-3 font-display text-2xl tracking-[0.05em] md:text-3xl">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-ghost-dim">{item.copy}</p>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </PageSection>
 

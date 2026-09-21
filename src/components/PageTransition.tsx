@@ -15,10 +15,18 @@ import { isMobilePerf } from "@/lib/perf";
 
 const ease = "power3.inOut";
 
+// URL segments whose displayed transition label should differ from the slug.
+const routeLabelOverrides: Record<string, string> = {
+  events: "ZONES",
+};
+
 function routeLabel(pathname: string) {
   if (pathname === "/") return "HOME";
   const segment = pathname.split("/").filter(Boolean).pop();
-  return segment?.replace(/-/g, " ").toUpperCase() ?? "LOAD";
+  if (!segment) return "LOAD";
+  return (
+    routeLabelOverrides[segment] ?? segment.replace(/-/g, " ").toUpperCase()
+  );
 }
 
 export function PageTransition({ children }: { children: ReactNode }) {

@@ -150,7 +150,9 @@ export function ScoreTicker({
       {items.map((item, i) => (
         <div
           key={item.label}
-          className="min-w-[150px] border border-line bg-void-2/80 px-4 py-3"
+          className={`pv-card ${
+            i % 2 === 0 ? "pv-card--cyan" : "pv-card--magenta"
+          } min-w-[150px] bg-void-2/80 px-4 py-3`}
           style={{
             boxShadow:
               i % 2 === 0
@@ -238,7 +240,7 @@ export function DisciplineCard({
       >
         <div
           data-scroll-discipline-panel
-          className="relative h-full min-h-[320px] overflow-hidden border border-line bg-void-2 transition-transform duration-500 group-hover:scale-[1.01] md:min-h-[440px]"
+          className="pv-card pv-card--cyan relative h-full min-h-[320px] overflow-hidden bg-void-2 transition-transform duration-500 group-hover:scale-[1.01] md:min-h-[440px]"
         >
           <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 group-hover:saturate-150"
@@ -296,7 +298,7 @@ export function ExperienceCard({
         transition={{ duration: 0.7 }}
       >
         <TransitionLink href={href} className="group block" direction="forward">
-          <div className="relative aspect-[16/11] overflow-hidden border border-line">
+          <div className="pv-card pv-card--cyan relative aspect-[16/11] overflow-hidden">
             <SharedEventImage
               slug={slug}
               src={image}

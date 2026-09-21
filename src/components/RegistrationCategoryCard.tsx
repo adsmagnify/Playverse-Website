@@ -9,13 +9,6 @@ const accentText = {
   lime: "text-lime",
 } as const;
 
-const accentBorder = {
-  cyan: "border-cyan/50 hover:border-cyan hover:shadow-[0_0_40px_rgba(0,240,255,0.12)]",
-  magenta:
-    "border-magenta/50 hover:border-magenta hover:shadow-[0_0_40px_rgba(255,43,214,0.12)]",
-  lime: "border-lime/50 hover:border-lime hover:shadow-[0_0_40px_rgba(184,255,0,0.12)]",
-} as const;
-
 export function RegistrationCategoryCard({
   title,
   tag,
@@ -34,7 +27,7 @@ export function RegistrationCategoryCard({
       <TransitionLink
         href={href}
         direction="forward"
-        className={`group block border bg-void-2/80 p-8 transition ${accentBorder[accent]}`}
+        className={`pv-card pv-card--${accent} group block bg-void-2/80 p-8`}
       >
         <p className={`font-mono text-[10px] uppercase tracking-[0.18em] ${accentText[accent]}`}>
           {tag}

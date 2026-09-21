@@ -258,20 +258,23 @@ export default function HomePage() {
             </p>
           </Reveal>
           <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {integratedExperiences.map((item, i) => (
-              <article
-                key={item.title}
-                data-scroll-principle
-                className="group relative overflow-hidden border border-line bg-void/50 p-6 transition hover:border-cyan md:p-8"
-              >
-                <span className="font-mono text-cyan text-sm">0{i + 1}</span>
-                <h3 className="mt-3 font-display text-2xl tracking-[0.05em] group-hover:text-magenta md:text-3xl">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm text-ghost-dim md:text-base">{item.copy}</p>
-                <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-cyan/10 blur-2xl transition group-hover:bg-magenta/20" />
-              </article>
-            ))}
+            {integratedExperiences.map((item, i) => {
+              const accent = (["cyan", "magenta", "lime"] as const)[i % 3];
+              return (
+                <article
+                  key={item.title}
+                  data-scroll-principle
+                  className={`pv-card pv-card--${accent} group relative overflow-hidden bg-void/50 p-6 md:p-8`}
+                >
+                  <span className={`font-mono text-sm text-${accent}`}>0{i + 1}</span>
+                  <h3 className="mt-3 font-display text-2xl tracking-[0.05em] md:text-3xl">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-ghost-dim md:text-base">{item.copy}</p>
+                  <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-cyan/10 blur-2xl transition group-hover:bg-magenta/20" />
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -303,7 +306,7 @@ export default function HomePage() {
             </ul>
           </Reveal>
           <Reveal delay={0.08}>
-            <div className="relative border border-line bg-void-2/80 p-8 md:p-10">
+            <div className="pv-card pv-card--lime relative bg-void-2/80 p-8 md:p-10">
               <div className="rgb-border absolute inset-0 -z-10 opacity-40" />
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan">
                 Brand partnerships

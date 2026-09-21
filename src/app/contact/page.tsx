@@ -73,7 +73,7 @@ export default function ContactPage() {
         </div>
 
         <Reveal delay={0.1}>
-          <div className="relative border border-line bg-void-2/90 p-6 md:p-8">
+          <div className="pv-card pv-card--cyan relative bg-void-2/90 p-6 md:p-8">
             <div className="rgb-border absolute inset-0 -z-10 opacity-40" />
             <h2 className="font-display text-3xl tracking-[0.06em]">
               Send the brief
